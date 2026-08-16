@@ -1,0 +1,22 @@
+---
+bodyClass: bg-muted-background
+preheader: New notification
+---
+
+<component src="layouts/base.html">
+	<p class="m-0 mb-6 text-xl font-semibold text-highlighted-foreground">{{ title }}</p>
+
+	<if condition="message">
+		<p class="m-0 mb-6 text-lg/7 text-muted-foreground">{{ message }}</p>
+	</if>
+
+	<if condition="link">
+		<p class="m-0 mb-6 text-lg/7 text-muted-foreground">{{ openInApp }}</p>
+
+		<component src="partials/button.html" href="{{ link }}"> {{ view }} &rarr; </component>
+
+		<component src="partials/link-fallback.html" href="{{ link }}">
+			{{ openLinkInBrowser }}
+		</component>
+	</if>
+</component>

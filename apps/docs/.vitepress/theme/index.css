@@ -1,0 +1,83 @@
+@import "tailwindcss";
+@import "@repo/tailwind-config/theme.css";
+
+@source "../../../../packages/ui/components";
+@source ".";
+
+/* Map VitePress theme variables to our shared CSS variables */
+
+:root {
+	/* Brand/Primary colors */
+	--vp-c-brand-1: var(--ui-primary);
+	--vp-c-brand-2: var(--ui-primary);
+	--vp-c-brand-3: var(--ui-primary);
+	--vp-c-brand-soft: var(--ui-bg-accented);
+
+	/* Background colors */
+	--vp-c-bg: var(--ui-bg);
+	--vp-c-bg-alt: var(--ui-bg-elevated);
+	--vp-c-bg-elv: var(--ui-bg-elevated);
+	--vp-c-bg-soft: var(--ui-bg-muted);
+
+	/* Text colors */
+	--vp-c-text-1: var(--ui-text-highlighted);
+	--vp-c-text-2: var(--ui-text-muted);
+	--vp-c-text-3: var(--ui-text-muted);
+
+	/* Border colors */
+	--vp-c-border: var(--ui-border);
+	--vp-c-divider: var(--ui-border);
+
+	/* Code block colors */
+	--vp-c-bg-code: var(--ui-bg-muted);
+	--vp-code-block-bg: var(--ui-bg-muted);
+	--vp-code-block-color: var(--ui-text-highlighted);
+
+	/* Custom container */
+	--vp-layout-max-width: 1440px;
+
+	/* Fonts */
+	--vp-font-family-base: var(--font-sans);
+	--vp-font-family-mono:
+		ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+	/* Border radius */
+	--vp-c-radius: var(--ui-radius);
+}
+
+.dark {
+	/* Brand/Primary colors (same in dark mode) */
+	--vp-c-brand-1: var(--ui-primary);
+	--vp-c-brand-2: var(--ui-primary);
+	--vp-c-brand-3: var(--ui-primary);
+	--vp-c-brand-soft: var(--ui-bg-accented);
+
+	/* Background colors */
+	--vp-c-bg: var(--ui-bg);
+	--vp-c-bg-alt: var(--ui-bg-elevated);
+	--vp-c-bg-elv: var(--ui-bg-elevated);
+	--vp-c-bg-soft: var(--ui-bg-muted);
+
+	/* Text colors */
+	--vp-c-text-1: var(--ui-text-highlighted);
+	--vp-c-text-2: var(--ui-text-muted);
+	--vp-c-text-3: var(--ui-text-muted);
+
+	/* Border colors */
+	--vp-c-border: var(--ui-border);
+	--vp-c-divider: var(--ui-border);
+
+	/* Code block colors */
+	--vp-c-bg-code: var(--ui-bg-muted);
+	--vp-code-block-bg: var(--ui-bg-muted);
+	--vp-code-block-color: var(--ui-text-highlighted);
+}
+
+.VPContent h1,
+.VPContent h2,
+.VPContent h3,
+.VPContent h4,
+.VPContent h5,
+.VPContent h6 {
+	font-family: var(--font-heading);
+}

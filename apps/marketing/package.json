@@ -1,0 +1,51 @@
+{
+	"name": "marketing",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "nuxt build",
+		"start": "nuxt start",
+		"dev": "nuxt dev --dotenv ../../.env.local --port 3001",
+		"e2e": "pnpm exec playwright test --ui",
+		"e2e:ci": "pnpm exec playwright install chromium && pnpm exec playwright test",
+		"lint": "oxlint \"**/*.{vue,ts}\"",
+		"postinstall": "nuxt prepare",
+		"preview": "nuxt preview",
+		"type-check": "nuxi typecheck",
+		"clean": "nuxt cleanup"
+	},
+	"dependencies": {
+		"@iconify-json/lucide": "catalog:",
+		"@nuxt/icon": "catalog:",
+		"@nuxt/image": "catalog:",
+		"@nuxt/ui": "catalog:",
+		"@nuxtjs/color-mode": "^4.0.1",
+		"@nuxtjs/i18n": "catalog:",
+		"@nuxtjs/robots": "catalog:",
+		"@nuxtjs/seo": "catalog:",
+		"@repo/i18n": "workspace:*",
+		"@repo/ui": "workspace:*",
+		"@repo/utils": "workspace:*",
+		"@vueuse/core": "catalog:",
+		"@vueuse/nuxt": "catalog:",
+		"class-variance-authority": "catalog:",
+		"clsx": "catalog:",
+		"date-fns": "catalog:",
+		"nuxt": "catalog:",
+		"tailwind-merge": "catalog:",
+		"ufo": "catalog:",
+		"vue": "catalog:",
+		"zod": "catalog:"
+	},
+	"devDependencies": {
+		"@nuxt/devtools": "catalog:",
+		"@playwright/test": "catalog:",
+		"@repo/tailwind-config": "workspace:*",
+		"@repo/tsconfig": "workspace:*",
+		"dotenv-cli": "catalog:",
+		"start-server-and-test": "catalog:",
+		"tailwindcss": "catalog:",
+		"vue-tsc": "catalog:"
+	}
+}

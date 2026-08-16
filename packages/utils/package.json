@@ -1,0 +1,17 @@
+{
+	"name": "@repo/utils",
+	"version": "0.0.0",
+	"scripts": {
+		"lint": "oxlint \"**/*.ts*\"",
+		"test": "vitest run",
+		"test:watch": "vitest"
+	},
+	"dependencies": {
+		"zod": "catalog:"
+	},
+	"devDependencies": {
+		"@repo/tsconfig": "workspace:*",
+		"@types/node": "catalog:",
+		"vitest": "catalog:"
+	}
+}

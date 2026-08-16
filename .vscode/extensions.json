@@ -1,0 +1,9 @@
+{
+	"recommendations": [
+		"oxc.oxc-vscode",
+		"lokalise.i18n-ally",
+		"nuxt.mdc",
+		"vue.volar",
+		"bradlc.vscode-tailwindcss"
+	]
+}

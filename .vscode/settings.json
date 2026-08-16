@@ -1,0 +1,53 @@
+{
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "oxc.oxc-vscode",
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+	"editor.tabSize": 4,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.oxc": "always"
+	},
+	"oxc.fmt.configPath": ".oxfmtrc.json",
+	"oxc.typeAware": true,
+	"[javascript]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode"
+	},
+	"[jsonc]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode"
+	},
+	"[vue]": {
+		"editor.defaultFormatter": "oxc.oxc-vscode"
+	},
+	"[prisma]": {
+		"editor.defaultFormatter": "Prisma.prisma"
+	},
+	"tailwindCSS.experimental.configFile": {
+		"apps/saas/assets/css/main.css": ["apps/saas/**/*", "packages/ui/**/*"],
+		"apps/marketing/assets/css/main.css": "apps/marketing/**/*",
+		"apps/docs/.vitepress/theme/index.css": "apps/docs/**/*"
+	},
+	"files.associations": {
+		"*.css": "tailwindcss"
+	},
+	"editor.quickSuggestions": {
+		"strings": "on"
+	},
+	"tailwindCSS.classAttributes": ["class", "className", ":class", "ui", ":ui"],
+	"tailwindCSS.classFunctions": ["cn"],
+	"tailwindCSS.experimental.classRegex": [
+		[":?ui\\s*=\\s*\"\\s*\\{([\\s\\S]*?)\\}\\s*\"", "(?:'|\"|`)([^'\"`]*)"],
+		["ui\\s*:\\s*\\{([\\s\\S]*?)\\}", "(?:'|\"|`)([^'\"`]*)"]
+	],
+	"typescript.preferences.importModuleSpecifier": "shortest",
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"typescript.enablePromptUseWorkspaceTsdk": true,
+	"i18n-ally.localesPaths": ["packages/i18n/translations"],
+	"i18n-ally.keystyle": "nested",
+	"i18n-ally.enabledFrameworks": ["vue"]
+}

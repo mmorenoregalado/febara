@@ -1,0 +1,316 @@
+{
+	"changelog": {
+		"badge": "Updates",
+		"description": "New roles, faster switching, and the sign-in security we shipped this season.",
+		"title": "See what just shipped",
+		"latest": "New",
+		"kinds": {
+			"added": "New",
+			"improved": "Improved",
+			"fixed": "Fixed"
+		},
+		"entries": {
+			"clientPortals": {
+				"date": "2026-08-06",
+				"version": "v1.4",
+				"title": "A home for every client",
+				"summary": "Clients can step into their own workspace, review what’s in progress, and leave a note — without borrowing a teammate’s login.",
+				"changes": {
+					"item1": {
+						"kind": "added",
+						"text": "Guest access with a view-only role, so clients see progress without a full seat."
+					},
+					"item2": {
+						"kind": "added",
+						"text": "A client-ready overview on the start page with the work that matters this week."
+					},
+					"item3": {
+						"kind": "improved",
+						"text": "Switching organizations keeps your place, even with a long client list."
+					}
+				}
+			},
+			"planClarity": {
+				"date": "2026-07-22",
+				"version": "v1.3",
+				"title": "Passkeys and two-factor, built in",
+				"summary": "Signing in should be fast and hard to phish — passkeys and two-factor verification now ship with the starter.",
+				"changes": {
+					"item1": {
+						"kind": "improved",
+						"text": "Passkey sign-in works out of the box, with no extra configuration."
+					},
+					"item2": {
+						"kind": "added",
+						"text": "Two-factor verification can be required for accounts that need it."
+					},
+					"item3": {
+						"kind": "fixed",
+						"text": "Magic link emails could land in spam with some providers. Delivery is more reliable now."
+					}
+				}
+			},
+			"quietWeek": {
+				"date": "2026-07-08",
+				"version": "",
+				"title": "A quieter week of polish",
+				"summary": "No headline feature — just the empty states, emails, and invite edges that make the product feel finished.",
+				"changes": {
+					"item1": {
+						"kind": "improved",
+						"text": "Empty members and invitations screens now suggest a next step instead of staring back at you."
+					},
+					"item2": {
+						"kind": "fixed",
+						"text": "Invite links failed when the person already had an account. They now drop into the right workspace."
+					},
+					"item3": {
+						"kind": "improved",
+						"text": "Notification emails link straight back to the item that changed, instead of the inbox."
+					}
+				}
+			},
+			"workspaceSwitching": {
+				"date": "2026-06-30",
+				"version": "v1.2",
+				"title": "Switch workspaces without the wait",
+				"summary": "Moving between clients should feel like changing folders, not reloading the app. This release is about that click.",
+				"changes": {
+					"item1": {
+						"kind": "improved",
+						"text": "Organization switching stays snappy even with dozens of memberships."
+					},
+					"item2": {
+						"kind": "added",
+						"text": "We remember the last workspace you had open and take you back there."
+					},
+					"item3": {
+						"kind": "fixed",
+						"text": "The org switcher could show a stale name after a rename. It now follows the workspace."
+					}
+				}
+			},
+			"invites": {
+				"date": "2026-05-14",
+				"version": "v1.1",
+				"title": "Invites that feel like a handshake",
+				"summary": "The first email someone gets from PokeDex Manager should name the workspace, the person who asked, and what to do next.",
+				"changes": {
+					"item1": {
+						"kind": "added",
+						"text": "Invite emails include the workspace name and who asked you in."
+					},
+					"item2": {
+						"kind": "improved",
+						"text": "First-run setup walks you through creating the first organization instead of dumping you on an empty start page."
+					},
+					"item3": {
+						"kind": "fixed",
+						"text": "Expired invites now say so, instead of a generic error."
+					}
+				}
+			},
+			"launch": {
+				"date": "2026-04-02",
+				"version": "v1.0",
+				"title": "PokeDex Manager, from first login",
+				"summary": "The first public release: organizations, roles, and secure sign-in in one place — so a team can invite people and get to work without a side quest.",
+				"changes": {
+					"item1": {
+						"kind": "added",
+						"text": "Organizations, roles, and secure sign-in live together from day one."
+					},
+					"item2": {
+						"kind": "added",
+						"text": "A start page for each workspace so teams know where to begin."
+					},
+					"item3": {
+						"kind": "added",
+						"text": "Passkey and magic-link sign-in ship alongside email and password."
+					}
+				}
+			}
+		}
+	},
+	"contact": {
+		"badge": "Contact",
+		"description": "Questions about plans, onboarding, or a workspace for your team. We usually reply within one business day.",
+		"form": {
+			"email": "Email",
+			"message": "Message",
+			"name": "Name",
+			"notifications": {
+				"error": "We could not send your message. Please try again in a moment.",
+				"success": "Message sent. We will get back to you soon."
+			},
+			"submit": "Send message"
+		},
+		"title": "Tell us what you need"
+	},
+	"documentation": {
+		"title": "Documentation"
+	},
+	"faq": {
+		"badge": "Questions",
+		"description": "Straight answers to the questions teams ask before they start.",
+		"title": "Frequently asked questions",
+		"items": {
+			"dataSecurity": {
+				"question": "Is my Pokédex data secure?",
+				"answer": "Yes. Every lab's data is isolated, access is role-based, and you can enable two-factor authentication or passkeys on any account."
+			},
+			"inviteTeam": {
+				"question": "Can I invite my research team?",
+				"answer": "Yes. Invite researchers by email, assign roles, and everyone stays scoped to their own lab's data."
+			},
+			"authMethods": {
+				"question": "What sign-in methods are supported?",
+				"answer": "Email and password, magic links, passkeys, and Google sign-in, with optional two-factor verification."
+			},
+			"selfHost": {
+				"question": "Can I self-host PokeDex Manager?",
+				"answer": "Yes. It is a self-hosted Nuxt application — deploy it on your own infrastructure with your own database."
+			}
+		}
+	},
+	"home": {
+		"hero": {
+			"new": "New",
+			"featureBadge": "Auth, security, and multi-lab roles — ready to ship your Pokédex platform",
+			"title": "Build your Pokédex platform without rebuilding the foundations",
+			"subtitle": "A production-minded Nuxt starter for Pokédex management platforms — authentication, research labs, security, and the UI patterns you need to launch faster.",
+			"getStarted": "Start building",
+			"documentation": "Read the docs",
+			"imageAlt": "Pokédex dashboard preview",
+			"preview": {
+				"organization": "Oak Labs",
+				"start": "Start",
+				"chatbot": "Pokédex Assistant",
+				"organizationSettings": "Lab settings",
+				"accountSettings": "Account settings",
+				"welcome": "Welcome to the start page of this lab!",
+				"newClients": "New trainers",
+				"revenue": "Revenue",
+				"churn": "Churn",
+				"placeholder": "Place your content here...",
+				"userName": "Maya Chen",
+				"userEmail": "maya{'@'}oaklabs.com"
+			}
+		},
+		"features": {
+			"badge": "Platform",
+			"title": "Everything between your first entry and a full Pokédex",
+			"description": "Opinionated defaults for the hard parts of running a Pokédex platform — so your team can focus on what trainers actually pay for.",
+			"feature1": {
+				"title": "Labs and research teams",
+				"subtitle": "Invite researchers, manage trainer roles, and keep every lab's Pokédex data isolated from day one.",
+				"description": "Multi-tenant structure is built in: create a lab, invite your researchers, and switch between Pokédex projects without custom scaffolding.",
+				"benefit1": {
+					"title": "Role-aware access",
+					"description": "Owners, admins, and members get clear permissions out of the box."
+				},
+				"benefit2": {
+					"title": "Invites that work",
+					"description": "Email invitations and join flows get new trainers into the lab, not stuck in a demo."
+				},
+				"benefit3": {
+					"title": "Active workspace context",
+					"description": "Researchers move between labs without losing their place in the Pokédex."
+				}
+			},
+			"feature2": {
+				"title": "Secure sign-in for every trainer",
+				"subtitle": "Passkeys, two-factor verification, and magic links — without writing your own auth flows.",
+				"description": "Google sign-in, passkeys, email and password, and magic links ship out of the box, with two-factor verification for accounts that need it.",
+				"benefit1": {
+					"title": "Passkey sign-in",
+					"description": "Trainers sign in with device biometrics — no password required."
+				},
+				"benefit2": {
+					"title": "Two-factor verification",
+					"description": "Add a second step for accounts that need it, without extra setup."
+				},
+				"benefit3": {
+					"title": "Magic links",
+					"description": "Send a one-time sign-in link straight to a trainer's inbox."
+				}
+			}
+		},
+		"testimonials": {
+			"badge": "Labs",
+			"title": "Trusted by labs cataloging real Pokédex data",
+			"description": "Example quotes you can replace with your own customers once you launch your Pokédex.",
+			"items": {
+				"item1": {
+					"quote": "We replaced months of auth and security work with a foundation we could actually extend. Our first labs were live and cataloging in weeks, not quarters.",
+					"name": "Maya Chen",
+					"role": "Founder, Oak Labs"
+				},
+				"item2": {
+					"quote": "The lab model matched how our research teams already worked. Invites, roles, and switching between Pokédex projects just worked — we spent our time on the product instead.",
+					"name": "Jonas Weber",
+					"role": "CTO, Viridian Labs"
+				},
+				"item3": {
+					"quote": "Clean defaults, clear structure, and nothing fighting us when we customized our Pokédex. It feels like a senior team left us a strong starting point.",
+					"name": "Amelia Ortiz",
+					"role": "Product Lead, Cerulean Studio"
+				}
+			}
+		},
+		"cta": {
+			"badge": "Get started",
+			"title": "Ready to launch your Pokédex platform?",
+			"description": "Start with a complete foundation for Pokédex management — auth, labs, security, and UI — then make it yours.",
+			"primary": "Create your account",
+			"secondary": "Talk to us"
+		}
+	},
+	"newsletter": {
+		"email": "Email",
+		"hints": {
+			"error": {
+				"message": "Could not subscribe. Please try again later."
+			},
+			"success": {
+				"message": "You are on the list. We will share product updates sparingly.",
+				"title": "Subscribed"
+			}
+		},
+		"submit": "Subscribe",
+		"subtitle": "Pokédex notes and launch updates — no noise.",
+		"title": "Stay in the loop"
+	},
+	"notFound": {
+		"code": "404",
+		"title": "This page does not exist",
+		"goToDashboard": "Go to dashboard",
+		"goToHomepage": "Go to homepage"
+	},
+	"common": {
+		"footer": {
+			"features": "Features",
+			"builtWith": "Built with PokeDex Manager"
+		},
+		"menu": {
+			"changelog": "Changelog",
+			"contact": "Contact",
+			"dashboard": "Dashboard",
+			"docs": "Docs",
+			"faq": "FAQ",
+			"login": "Login"
+		},
+		"aria": {
+			"menu": "Menu",
+			"language": "Language"
+		},
+		"tableOfContents": {
+			"title": "On this page"
+		},
+		"colorMode": {
+			"system": "System",
+			"light": "Light",
+			"dark": "Dark"
+		}
+	}
+}

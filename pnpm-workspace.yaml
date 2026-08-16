@@ -1,0 +1,112 @@
+packages:
+  - apps/*
+  - packages/*
+  - tooling/*
+
+minimumReleaseAge: 1440
+
+catalog:
+  "@ai-sdk/anthropic": ^4.0.38
+  "@ai-sdk/openai": ^4.0.40
+  "@aws-sdk/client-s3": 3.1110.0
+  "@aws-sdk/s3-request-presigner": 3.1110.0
+  "@better-auth/core": 1.6.28
+  "@better-auth/passkey": 1.6.28
+  "@iconify-json/lucide": ^1.2.123
+  "@internationalized/date": ^3.12.3
+  # Maizzle 6 is a Vue SFC/Vite rewrite that cannot render the PostHTML
+  # `.html` email templates in packages/mail, so stay on 5.x.
+  "@maizzle/framework": ^5.5.0
+  "@nuxt/devtools": ^3.4.1
+  "@nuxt/icon": ^2.5.0
+  "@nuxt/image": 2.1.0
+  "@nuxt/ui": ^4.10.0
+  "@nuxtjs/i18n": 10.6.0
+  "@nuxtjs/robots": ^6.1.4
+  "@nuxtjs/seo": 5.3.12
+  "@orpc/client": 1.15.0
+  "@orpc/json-schema": 1.15.0
+  "@orpc/openapi": 1.15.0
+  "@orpc/server": 1.15.0
+  "@orpc/tanstack-query": 1.15.0
+  "@orpc/zod": 1.15.0
+  "@paralleldrive/cuid2": ^3.3.0
+  "@playwright/test": ^1.62.1
+  "@prisma/adapter-pg": 7.9.1
+  "@prisma/client": 7.9.1
+  "@scalar/hono-api-reference": ^0.11.14
+  "@sindresorhus/slugify": ^3.0.0
+  "@tailwindcss/typography": ^0.5.20
+  "@tailwindcss/vite": ^4.3.3
+  "@tanstack/vue-query": ^5.101.4
+  "@types/node": 26.2.0
+  "@types/nodemailer": ^8.0.1
+  "@vitest/coverage-v8": ^4.1.10
+  "@vueuse/core": ^14.4.0
+  "@vueuse/nuxt": ^14.4.0
+  ai: ^7.0.65
+  better-auth: 1.6.28
+  better-sqlite3: ^13.0.3
+  class-variance-authority: ^0.7.1
+  clsx: ^2.1.1
+  consola: ^3.4.2
+  cookie: ^2.0.1
+  cropperjs: 2.1.1
+  date-fns: ^4.4.0
+  dotenv: ^17.4.2
+  dotenv-cli: ^11.0.0
+  drizzle-kit: ^0.31.10
+  drizzle-orm: ^0.45.2
+  drizzle-zod: 0.8.3
+  es-toolkit: ^1.50.0
+  h3: 1.15.11
+  hono: ^4.13.2
+  marked: ^18.0.9
+  nanoid: ^6.0.1
+  nodemailer: ^9.0.5
+  nitropack: 2.13.4
+  nuxt: 4.5.2
+  openai: ^7.4.0
+  openapi-merge: ^2.0.2
+  # oxfmt 0.57+ formats CSS files and fails to parse
+  # tooling/tailwind/tailwind-animate.css (custom properties like
+  # `--translate-1/2`), so stay on 0.56 until that is fixed upstream.
+  oxfmt: 0.56.0
+  oxlint: 1.78.0
+  permix: ^4.1.2
+  pg: ^8.23.0
+  prisma: 7.9.1
+  prisma-zod-generator: 3.1.0
+  start-server-and-test: ^3.0.12
+  resend: ^6.20.0
+  superjson: ^2.2.6
+  tailwind-merge: ^3.6.0
+  tailwindcss: 4.3.3
+  tailwindcss-preset-email: latest
+  tsx: ^4.23.12
+  turbo: ^2.10.9
+  typescript: npm:typescript-native-bridge@6.0.3-bridge.13.tsgo.7.0.2
+  ufo: ^1.6.4
+  use-intl: ^4.13.6
+  uuid: ^14.0.1
+  vitepress: 2.0.0-alpha.18
+  vitest: ^4.1.10
+  vue: 3.5.41
+  vue-tsc: ^3.3.9
+  zod: ^4.4.3
+
+allowBuilds:
+  "@parcel/watcher": true
+  "@prisma/engines": true
+  better-sqlite3: true
+  esbuild: true
+  prisma: true
+  prisma-zod-generator: true
+  sharp: true
+  unrs-resolver: true
+  vue-demi: true
+
+publicHoistPattern:
+  - "*prisma*"
+
+shamefullyHoist: true

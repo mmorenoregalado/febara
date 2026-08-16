@@ -1,0 +1,14 @@
+---
+bodyClass: bg-muted-background
+preheader: Verify your email address
+---
+
+<component src="layouts/base.html">
+	<p class="m-0 mb-6 text-lg/7 text-muted-foreground">{{{ bodyHtml }}}</p>
+
+	<component src="partials/button.html" href="{{{ url }}}"> {{ confirmEmail }} &rarr; </component>
+
+	<component src="partials/link-fallback.html" href="{{{ url }}}">
+		{{ openLinkInBrowser }}
+	</component>
+</component>

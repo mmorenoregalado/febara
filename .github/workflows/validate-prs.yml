@@ -1,0 +1,96 @@
+name: Validate PRs
+
+on:
+  pull_request:
+    branches: [main]
+
+env:
+  # Prisma generate (runs before `tsc` via turbo) needs DATABASE_URL. Falls back when the secret is unset (e.g. fork PRs); generate does not require a real database.
+  DATABASE_URL: ${{ secrets.DATABASE_URL || 'postgresql://prisma:prisma@127.0.0.1:5432/prisma' }}
+  BETTER_AUTH_SECRET: "better-auth-e2e-secret-1234567890"
+  # Resend validates its API key when the server bundle initializes; e2e tests do not send mail.
+  RESEND_API_KEY: "re_ci-placeholder"
+  # Nuxt SEO validates that dynamic OG image generation has a secret when the app starts.
+  NUXT_OG_IMAGE_SECRET: ci-og-image-secret
+
+jobs:
+  lint:
+    name: Lint and format check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - uses: pnpm/action-setup@v4
+      - name: Install dependencies
+        run: pnpm install
+      - name: Run oxlint
+        run: pnpm lint
+      - name: Check formatting
+        run: pnpm format:check
+
+  type-check:
+    name: Type check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - uses: pnpm/action-setup@v4
+      - name: Install dependencies
+        run: pnpm install && pnpm --filter @repo/database generate
+      - name: Run TypeScript
+        run: pnpm type-check
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - uses: pnpm/action-setup@v4
+      - name: Install dependencies
+        run: pnpm install && pnpm --filter @repo/database generate
+      - name: Build all apps
+        run: pnpm build
+
+  unit:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - uses: pnpm/action-setup@v4
+      - name: Install dependencies
+        run: pnpm install && pnpm --filter @repo/database generate
+      - name: Run unit tests
+        run: pnpm --filter @repo/api test
+
+  e2e:
+    name: Run e2e tests
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - uses: pnpm/action-setup@v4
+      - name: Install dependencies
+        run: pnpm install && pnpm --filter @repo/database generate
+      - name: Run Playwright tests for SaaS app
+        run: pnpm --filter saas e2e:ci
+      - name: Run Playwright tests for Marketing app
+        run: pnpm --filter marketing e2e:ci
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: apps/saas/playwright-report/
+          retention-days: 30

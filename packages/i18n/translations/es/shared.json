@@ -1,0 +1,9 @@
+{
+	"common": {
+		"colorMode": {
+			"system": "Sistema",
+			"light": "Claro",
+			"dark": "Oscuro"
+		}
+	}
+}

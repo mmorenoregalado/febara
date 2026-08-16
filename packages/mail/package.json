@@ -1,0 +1,24 @@
+{
+	"name": "@repo/mail",
+	"version": "0.0.0",
+	"private": true,
+	"main": "./index.ts",
+	"types": "./index.ts",
+	"scripts": {
+		"type-check": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@maizzle/framework": "catalog:",
+		"@repo/i18n": "workspace:*",
+		"@repo/logs": "workspace:*",
+		"@repo/tsconfig": "workspace:*",
+		"es-toolkit": "catalog:",
+		"nitropack": "catalog:",
+		"nodemailer": "catalog:",
+		"resend": "catalog:"
+	},
+	"devDependencies": {
+		"@types/nodemailer": "catalog:",
+		"typescript": "catalog:"
+	}
+}

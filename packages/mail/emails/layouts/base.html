@@ -1,0 +1,31 @@
+<style>
+	@tailwind utilities;
+</style>
+
+<div
+	class="{{ page.bodyClass || 'bg-muted-background' }} px-4 py-8 font-[Inter,Arial,sans-serif] text-lg leading-7 text-foreground"
+>
+	<if condition="page.preheader">
+		<span class="max-h-0 max-w-0 hidden overflow-hidden leading-[0] text-transparent opacity-0">
+			{{ page.preheader }}
+		</span>
+	</if>
+
+	<table class="m-0 mx-auto w-full max-w-[640px]" role="presentation">
+		<tr>
+			<td>
+				<table class="w-full" role="presentation">
+					<tr>
+						<td class="rounded-lg bg-card p-8 border-border border border-solid">
+							<div class="mb-8">
+								<component src="partials/logo.html" />
+							</div>
+
+							<yield />
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</div>

@@ -1,0 +1,32 @@
+{
+	"name": "@repo/i18n",
+	"version": "0.0.0",
+	"main": "./index.ts",
+	"types": "./index.ts",
+	"exports": {
+		".": {
+			"types": "./index.ts",
+			"default": "./index.ts"
+		},
+		"./config": {
+			"types": "./config.ts",
+			"default": "./config.ts"
+		},
+		"./lib/merge-locale-messages": {
+			"types": "./lib/merge-locale-messages.ts",
+			"default": "./lib/merge-locale-messages.ts"
+		}
+	},
+	"scripts": {
+		"clean": "git clean -xdf .cache .turbo dist node_modules",
+		"type-check": "tsc --noEmit"
+	},
+	"dependencies": {
+		"es-toolkit": "catalog:"
+	},
+	"devDependencies": {
+		"@repo/tsconfig": "workspace:*",
+		"@types/node": "catalog:",
+		"typescript": "catalog:"
+	}
+}

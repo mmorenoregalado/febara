@@ -1,0 +1,43 @@
+{
+	"name": "@repo/api",
+	"version": "0.0.0",
+	"main": "./index.ts",
+	"scripts": {
+		"clean": "git clean -xdf .cache .turbo dist node_modules",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"type-check": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@orpc/client": "catalog:",
+		"@orpc/json-schema": "catalog:",
+		"@orpc/openapi": "catalog:",
+		"@orpc/server": "catalog:",
+		"@orpc/zod": "catalog:",
+		"@repo/ai": "workspace:*",
+		"@repo/auth": "workspace:*",
+		"@repo/database": "workspace:*",
+		"@repo/i18n": "workspace:*",
+		"@repo/logs": "workspace:*",
+		"@repo/mail": "workspace:*",
+		"@repo/notifications": "workspace:*",
+		"@repo/permissions": "workspace:*",
+		"@repo/storage": "workspace:*",
+		"@repo/utils": "workspace:*",
+		"@scalar/hono-api-reference": "catalog:",
+		"@sindresorhus/slugify": "catalog:",
+		"cookie": "catalog:",
+		"hono": "catalog:",
+		"nanoid": "catalog:",
+		"openapi-merge": "catalog:",
+		"permix": "catalog:",
+		"use-intl": "catalog:",
+		"zod": "catalog:"
+	},
+	"devDependencies": {
+		"@repo/tsconfig": "workspace:*",
+		"@vitest/coverage-v8": "catalog:",
+		"typescript": "catalog:",
+		"vitest": "catalog:"
+	}
+}

@@ -1,0 +1,16 @@
+---
+bodyClass: bg-muted-background
+preheader: You have been invited to join an organization
+---
+
+<component src="layouts/base.html">
+	<h1 class="m-0 mb-6 text-xl font-semibold text-highlighted-foreground">{{ headline }}</h1>
+
+	<p class="m-0 mb-6 text-lg/7 text-muted-foreground">{{{ bodyHtml }}}</p>
+
+	<component src="partials/button.html" href="{{{ url }}}"> {{ join }} </component>
+
+	<component src="partials/link-fallback.html" href="{{{ url }}}">
+		{{ openLinkInBrowser }}
+	</component>
+</component>

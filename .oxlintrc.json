@@ -1,0 +1,15 @@
+{
+	"$schema": "./node_modules/oxlint/configuration_schema.json",
+	"ignorePatterns": [
+		"node_modules",
+		".nuxt",
+		".output",
+		"dist",
+		".vitepress/dist",
+		"packages/database/prisma/zod/**.ts"
+	],
+	"options": {
+		"typeAware": true,
+		"typeCheck": true
+	}
+}

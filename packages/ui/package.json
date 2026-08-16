@@ -1,0 +1,10 @@
+{
+	"name": "@repo/ui",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"devDependencies": {
+		"@nuxt/ui": "catalog:",
+		"@repo/tsconfig": "workspace:*"
+	}
+}

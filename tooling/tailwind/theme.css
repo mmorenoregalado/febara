@@ -1,0 +1,100 @@
+:root {
+	--touch: oklch(0.51 0.12 128);
+	--touch-foreground: oklch(0.99 0.01 128);
+
+	/* Map primary and neutral palettes to olive */
+	--ui-color-primary-50: var(--color-olive-50);
+	--ui-color-primary-100: var(--color-olive-100);
+	--ui-color-primary-200: var(--color-olive-200);
+	--ui-color-primary-300: var(--color-olive-300);
+	--ui-color-primary-400: var(--color-olive-400);
+	--ui-color-primary-500: var(--color-olive-500);
+	--ui-color-primary-600: var(--color-olive-600);
+	--ui-color-primary-700: var(--color-olive-700);
+	--ui-color-primary-800: var(--color-olive-800);
+	--ui-color-primary-900: var(--color-olive-900);
+	--ui-color-primary-950: var(--color-olive-950);
+
+	--ui-color-neutral-50: var(--color-olive-50);
+	--ui-color-neutral-100: var(--color-olive-100);
+	--ui-color-neutral-200: var(--color-olive-200);
+	--ui-color-neutral-300: var(--color-olive-300);
+	--ui-color-neutral-400: var(--color-olive-400);
+	--ui-color-neutral-500: var(--color-olive-500);
+	--ui-color-neutral-600: var(--color-olive-600);
+	--ui-color-neutral-700: var(--color-olive-700);
+	--ui-color-neutral-800: var(--color-olive-800);
+	--ui-color-neutral-900: var(--color-olive-900);
+	--ui-color-neutral-950: var(--color-olive-950);
+
+	/* Ink primary, olive-50 paper */
+	--ui-primary: var(--ui-color-primary-950);
+	--ui-secondary: var(--ui-color-neutral-100);
+
+	--ui-bg: var(--ui-color-neutral-50);
+	--ui-bg-muted: var(--ui-color-neutral-100);
+	--ui-bg-elevated: white;
+	--ui-bg-accented: var(--ui-color-neutral-200);
+	--ui-bg-inverted: var(--ui-color-neutral-950);
+
+	--ui-text-dimmed: var(--ui-color-neutral-400);
+	--ui-text-muted: var(--ui-color-neutral-600);
+	--ui-text-toned: var(--ui-color-neutral-600);
+	--ui-text: var(--ui-color-neutral-700);
+	--ui-text-highlighted: var(--ui-color-neutral-950);
+	--ui-text-inverted: white;
+
+	--ui-border: var(--ui-color-neutral-200);
+	--ui-border-muted: var(--ui-color-neutral-200);
+	--ui-border-accented: var(--ui-color-neutral-300);
+	--ui-border-inverted: var(--ui-color-neutral-950);
+
+	--ui-radius: 0.625rem;
+	--ui-icon-stroke-width: 1.5;
+
+	--ui-success: var(--color-green-800);
+	--ui-error: var(--color-red-700);
+	--ui-warning: var(--color-yellow-700);
+}
+
+.dark {
+	--touch: oklch(0.76 0.11 128);
+	--touch-foreground: oklch(0.22 0.04 128);
+
+	--ui-primary: var(--ui-color-primary-50);
+	--ui-secondary: var(--ui-color-neutral-800);
+
+	--ui-bg: var(--ui-color-neutral-950);
+	--ui-bg-muted: var(--ui-color-neutral-900);
+	--ui-bg-elevated: var(--ui-color-neutral-900);
+	--ui-bg-accented: var(--ui-color-neutral-800);
+	--ui-bg-inverted: white;
+
+	--ui-text-dimmed: var(--ui-color-neutral-500);
+	--ui-text-muted: var(--ui-color-neutral-400);
+	--ui-text-toned: var(--ui-color-neutral-300);
+	--ui-text: var(--ui-color-neutral-200);
+	--ui-text-highlighted: var(--ui-color-neutral-50);
+	--ui-text-inverted: var(--ui-color-neutral-950);
+
+	--ui-border: var(--ui-color-neutral-800);
+	--ui-border-muted: var(--ui-color-neutral-800);
+	--ui-border-accented: var(--ui-color-neutral-700);
+	--ui-border-inverted: white;
+
+	--ui-success: var(--color-green-400);
+	--ui-error: var(--color-red-400);
+	--ui-warning: var(--color-yellow-500);
+}
+
+@theme {
+	--font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+	--font-heading: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+	--color-touch: var(--touch);
+	--color-touch-foreground: var(--touch-foreground);
+}
+
+/* Apply icon stroke width globally to all Iconify-rendered SVGs */
+.iconify {
+	stroke-width: var(--ui-icon-stroke-width);
+}
