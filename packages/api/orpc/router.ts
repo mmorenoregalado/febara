@@ -4,6 +4,7 @@ import { adminRouter } from "../modules/admin/router";
 import { aiRouter } from "../modules/ai/router";
 import { notificationsRouter } from "../modules/notifications/router";
 import { organizationsRouter } from "../modules/organizations/router";
+import { pokemonRouter } from "../modules/pokemon/router";
 import { usersRouter } from "../modules/users/router";
 import { publicProcedure } from "./procedures";
 
@@ -13,6 +14,7 @@ export const router = publicProcedure.router({
 	users: usersRouter,
 	ai: aiRouter,
 	notifications: notificationsRouter,
+	pokemon: pokemonRouter,
 });
 
 export type ApiRouterClient = RouterClient<typeof router>;

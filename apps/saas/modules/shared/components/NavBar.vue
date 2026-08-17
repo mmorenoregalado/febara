@@ -102,6 +102,12 @@
 				icon: "i-lucide-bot-message-square",
 				isActive: route.path.startsWith("/chatbot"),
 			},
+			{
+				label: t("app.menu.pokemon"),
+				href: "/pokemon",
+				icon: "i-lucide-gamepad-2",
+				isActive: route.path.startsWith("/pokemon"),
+			},
 		];
 
 		if (activeOrganization.value && canManageOrganization.value) {
