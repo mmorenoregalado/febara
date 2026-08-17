@@ -72,15 +72,6 @@
 				icon: "i-lucide-settings",
 				to: "/settings/account/general",
 			},
-			...(config.docsUrl
-				? [
-						{
-							label: t("app.userMenu.documentation"),
-							icon: "i-lucide-book",
-							href: config.docsUrl,
-						},
-					]
-				: []),
 			...(config.marketingUrl
 				? [
 						{
