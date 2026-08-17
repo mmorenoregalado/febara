@@ -76,6 +76,12 @@ export const UserNotificationPreferenceScalarFieldEnumSchema = z.enum(['id', 'us
 
 export type UserNotificationPreferenceScalarFieldEnum = z.infer<typeof UserNotificationPreferenceScalarFieldEnumSchema>;
 
+// File: CollectionEntryScalarFieldEnum.schema.ts
+
+export const CollectionEntryScalarFieldEnumSchema = z.enum(['id', 'userId', 'pokemonId', 'createdAt'])
+
+export type CollectionEntryScalarFieldEnum = z.infer<typeof CollectionEntryScalarFieldEnumSchema>;
+
 // File: SortOrder.schema.ts
 
 export const SortOrderSchema = z.enum(['asc', 'desc'])
@@ -298,4 +304,16 @@ export const UserNotificationPreferenceSchema = z.object({
 });
 
 export type UserNotificationPreferenceType = z.infer<typeof UserNotificationPreferenceSchema>;
+
+
+// File: CollectionEntry.schema.ts
+
+export const CollectionEntrySchema = z.object({
+  id: z.string(),
+  userId: z.string(),
+  pokemonId: z.number().int(),
+  createdAt: z.date(),
+});
+
+export type CollectionEntryType = z.infer<typeof CollectionEntrySchema>;
 

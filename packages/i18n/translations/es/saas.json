@@ -131,6 +131,7 @@
 			"admin": "Admin",
 			"aiChatbot": "Chatbot IA",
 			"collapseSidebar": "Contraer barra lateral",
+			"collection": "Mi colección",
 			"expandSidebar": "Expandir barra lateral",
 			"organizationSettings": "Configuración de organización",
 			"pokemon": "Explorador de Pokémon",
@@ -262,6 +263,39 @@
 			"authFailed": "No se pudo verificar el inicio de sesión",
 			"authFailedDescription": "El enlace de verificación no es válido o ha expirado. Vuelve a iniciar sesión.",
 			"backToLogin": "Volver a iniciar sesión"
+		}
+	},
+	"collection": {
+		"title": "Mi colección",
+		"description": "Los Pokémon que has agregado a tu colección.",
+		"loading": "Cargando tu colección...",
+		"error": {
+			"title": "No se pudo cargar tu colección",
+			"description": "Algo salió mal al cargar tu colección. Inténtalo de nuevo."
+		},
+		"empty": {
+			"title": "Aún no tienes Pokémon en tu colección",
+			"description": "Explora Pokémon y agrega tus favoritos a tu colección.",
+			"cta": "Explorar Pokémon"
+		},
+		"card": {
+			"viewDetail": "Ver detalle",
+			"remove": "Eliminar"
+		},
+		"confirmRemove": {
+			"title": "Eliminar de la colección",
+			"description": "Esta acción no elimina al Pokémon del catálogo, solo de tu colección."
+		},
+		"detail": {
+			"add": "Agregar a mi colección",
+			"inCollection": "En mi colección",
+			"remove": "Eliminar de mi colección"
+		},
+		"notifications": {
+			"added": "Pokémon agregado a tu colección",
+			"addError": "No se pudo agregar este Pokémon a tu colección",
+			"removed": "Pokémon eliminado de tu colección",
+			"removeError": "No se pudo eliminar este Pokémon de tu colección"
 		}
 	},
 	"documentation": {

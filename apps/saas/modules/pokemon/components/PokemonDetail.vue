@@ -41,6 +41,8 @@
 					{{ type }}
 				</UBadge>
 			</div>
+
+			<CollectionToggleButton :pokemon-id="pokemon.id" />
 		</div>
 
 		<div class="gap-6 flex flex-col">

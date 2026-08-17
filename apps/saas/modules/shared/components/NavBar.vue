@@ -108,6 +108,12 @@
 				icon: "i-lucide-gamepad-2",
 				isActive: route.path.startsWith("/pokemon"),
 			},
+			{
+				label: t("app.menu.collection"),
+				href: "/collection",
+				icon: "i-lucide-heart",
+				isActive: route.path.startsWith("/collection"),
+			},
 		];
 
 		if (activeOrganization.value && canManageOrganization.value) {

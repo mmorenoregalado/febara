@@ -38,6 +38,7 @@ model User {
   twofactors               TwoFactor[]
   notifications            Notification[]
   notificationPreferences  UserNotificationPreference[]
+  collectionEntries        CollectionEntry[]
 
   @@unique([email])
   @@map("user")
@@ -216,4 +217,16 @@ model UserNotificationPreference {
 
   @@unique([userId, type, target])
   @@map("user_notification_preference")
+}
+
+model CollectionEntry {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  pokemonId Int
+  createdAt DateTime @default(now())
+
+  @@unique([userId, pokemonId])
+  @@index([userId])
+  @@map("collection_entry")
 }

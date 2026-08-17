@@ -131,6 +131,7 @@
 			"admin": "Admin",
 			"aiChatbot": "AI Chatbot",
 			"collapseSidebar": "Collapse sidebar",
+			"collection": "My Collection",
 			"expandSidebar": "Expand sidebar",
 			"organizationSettings": "Organization settings",
 			"pokemon": "Pokémon Explorer",
@@ -262,6 +263,39 @@
 			"authFailedDescription": "We could not authenticate your account. Please try signing in again.",
 			"backToLogin": "Back to login",
 			"title": "Verifying your account"
+		}
+	},
+	"collection": {
+		"title": "My Collection",
+		"description": "The Pokémon you've added to your collection.",
+		"loading": "Loading your collection...",
+		"error": {
+			"title": "Could not load your collection",
+			"description": "Something went wrong while loading your collection. Please try again."
+		},
+		"empty": {
+			"title": "You don't have any Pokémon yet",
+			"description": "Explore Pokémon and add your favorites to your collection.",
+			"cta": "Explore Pokémon"
+		},
+		"card": {
+			"viewDetail": "View detail",
+			"remove": "Remove"
+		},
+		"confirmRemove": {
+			"title": "Remove from collection",
+			"description": "This action does not delete the Pokémon from the catalog, only from your collection."
+		},
+		"detail": {
+			"add": "Add to my collection",
+			"inCollection": "In my collection",
+			"remove": "Remove from my collection"
+		},
+		"notifications": {
+			"added": "Pokémon added to your collection",
+			"addError": "Could not add this Pokémon to your collection",
+			"removed": "Pokémon removed from your collection",
+			"removeError": "Could not remove this Pokémon from your collection"
 		}
 	},
 	"documentation": {

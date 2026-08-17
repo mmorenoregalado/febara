@@ -2,6 +2,7 @@ import type { InferRouterOutputs, RouterClient } from "@orpc/server";
 
 import { adminRouter } from "../modules/admin/router";
 import { aiRouter } from "../modules/ai/router";
+import { collectionRouter } from "../modules/collection/router";
 import { notificationsRouter } from "../modules/notifications/router";
 import { organizationsRouter } from "../modules/organizations/router";
 import { pokemonRouter } from "../modules/pokemon/router";
@@ -15,6 +16,7 @@ export const router = publicProcedure.router({
 	ai: aiRouter,
 	notifications: notificationsRouter,
 	pokemon: pokemonRouter,
+	collection: collectionRouter,
 });
 
 export type ApiRouterClient = RouterClient<typeof router>;
