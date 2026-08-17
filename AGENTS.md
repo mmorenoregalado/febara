@@ -254,5 +254,3 @@ dependencies to the workspace package that imports them.
 - [ ] No unjustified `any` types were added
 - [ ] User-facing strings have translations
 - [ ] Relevant docs and `CHANGELOG.md` are updated
-
-More documentation: apps/docs

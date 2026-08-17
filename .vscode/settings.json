@@ -29,8 +29,7 @@
 	},
 	"tailwindCSS.experimental.configFile": {
 		"apps/saas/assets/css/main.css": ["apps/saas/**/*", "packages/ui/**/*"],
-		"apps/marketing/assets/css/main.css": "apps/marketing/**/*",
-		"apps/docs/.vitepress/theme/index.css": "apps/docs/**/*"
+		"apps/marketing/assets/css/main.css": "apps/marketing/**/*"
 	},
 	"files.associations": {
 		"*.css": "tailwindcss"

@@ -27,7 +27,7 @@ docker compose up -d          # or: docker compose up -d postgres
 cp .env.local.example .env.local
 pnpm install
 pnpm --filter @repo/database push   # sync schema to a disposable local DB
-pnpm dev                            # saas :3000, marketing :3001, docs :3002
+pnpm dev                            # saas :3000, marketing :3001
 ```
 
 Root scripts (run from repo root, powered by Turbo):
@@ -78,7 +78,6 @@ pnpm --filter @repo/database studio     # Prisma Studio
 
 - `apps/saas` — the authenticated product (Nuxt 4, port 3000).
 - `apps/marketing` — public site (Nuxt 4, port 3001).
-- `apps/docs` — VitePress documentation (port 3002).
 - `apps/mail-preview` — Maizzle-based local preview for the HTML email templates in `packages/mail/emails`.
 - `packages/*` — shared, workspace-installed logic (`@repo/*`), each independently type-checked/built.
 - `tooling/*` — shared TypeScript base config, Tailwind theme, and CLI scripts.

@@ -8,7 +8,7 @@ description: "Use when creating a Nuxt marketing route, localized copy, metadata
 ## Scope
 
 Use for `apps/marketing` pages. There is no CMS/content layer in this app — copy lives in translation
-files, not markdown. Do not put product documentation here; local product docs use VitePress under `apps/docs`.
+files, not markdown.
 
 ## Procedure
 
