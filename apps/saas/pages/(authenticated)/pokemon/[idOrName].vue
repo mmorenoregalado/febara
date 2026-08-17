@@ -35,7 +35,7 @@
 <template>
 	<div class="gap-4 flex flex-col">
 		<UButton
-			to="/pokemon"
+			to="/"
 			icon="i-lucide-arrow-left"
 			variant="ghost"
 			color="neutral"
@@ -47,7 +47,7 @@
 			<UIcon name="i-lucide-search-x" class="text-dimmed h-10 w-10" />
 			<h1 class="text-xl font-semibold">{{ t("pokemon.detail.notFound") }}</h1>
 			<p class="text-muted max-w-sm">{{ t("pokemon.detail.notFoundDescription") }}</p>
-			<UButton to="/pokemon" :label="t('pokemon.detail.back')" />
+			<UButton to="/" :label="t('pokemon.detail.back')" />
 		</div>
 
 		<UAlert

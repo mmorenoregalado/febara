@@ -91,28 +91,22 @@
 
 		const items: MenuItem[] = [
 			{
-				label: t("app.menu.start"),
-				href: basePath.value,
-				icon: "i-lucide-home",
-				isActive: route.path === basePath.value,
-			},
-			{
-				label: t("app.menu.aiChatbot"),
-				href: "/chatbot",
-				icon: "i-lucide-bot-message-square",
-				isActive: route.path.startsWith("/chatbot"),
-			},
-			{
 				label: t("app.menu.pokemon"),
-				href: "/pokemon",
+				href: "/",
 				icon: "i-lucide-gamepad-2",
-				isActive: route.path.startsWith("/pokemon"),
+				isActive: route.path === "/" || route.path.startsWith("/pokemon/"),
 			},
 			{
 				label: t("app.menu.collection"),
 				href: "/collection",
 				icon: "i-lucide-heart",
 				isActive: route.path.startsWith("/collection"),
+			},
+			{
+				label: t("app.menu.aiChatbot"),
+				href: "/chatbot",
+				icon: "i-lucide-bot-message-square",
+				isActive: route.path.startsWith("/chatbot"),
 			},
 		];
 

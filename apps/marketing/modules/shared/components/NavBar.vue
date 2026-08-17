@@ -44,14 +44,6 @@
 			label: t("common.menu.contact"),
 			to: localePath({ name: "contact" }),
 		},
-		...(config.docsUrl
-			? [
-					{
-						label: t("common.menu.docs"),
-						to: config.docsUrl,
-					},
-				]
-			: []),
 	]);
 </script>
 
