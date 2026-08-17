@@ -226,14 +226,23 @@ Feature bonus: expone la colección del usuario y PokéAPI como **tools MCP** es
 Resumen de la arquitectura resultante:
 
 - **Servidor MCP** (`packages/mcp`, paquete hermano de `packages/api`): construye un `McpServer`
-  (`@modelcontextprotocol/server`) con tres tools —`get_collection`, `search_pokemon`,
-  `get_pokemon_stats`— y lo expone por **Streamable HTTP** en `/api/mcp` (montado en el `Hono` app de
-  `packages/api/index.ts`). Cada tool **no importa lógica interna de `packages/api`**: hace un `fetch()`
-  a los endpoints REST/OpenAPI ya existentes (`GET /api/collection`, `GET /api/pokemon`,
-  `GET /api/pokemon/{idOrName}`), reenviando la cookie de sesión del caller
-  (`packages/mcp/lib/api-client.ts`). Esto evita un ciclo de dependencias (`packages/api` monta
-  `@repo/mcp`; `packages/mcp` nunca importa `@repo/api`) y reutiliza sin duplicar la caché de 24h de
-  PokéAPI y las queries de Prisma que ya usan `pokemon`/`collection`.
+  (`@modelcontextprotocol/server`) con cuatro tools —`get_collection`, `search_pokemon`,
+  `get_pokemon_stats`, `identify_pokemon_card`— y lo expone por **Streamable HTTP** en `/api/mcp`
+  (montado en el `Hono` app de `packages/api/index.ts`). Cada tool **no importa lógica interna de
+  `packages/api`**: hace un `fetch()` a los endpoints REST/OpenAPI ya existentes
+  (`GET /api/collection`, `GET /api/pokemon`, `GET /api/pokemon/{idOrName}`,
+  `POST /api/ai/identify-pokemon-card`), reenviando la cookie de sesión del caller
+  (`packages/mcp/lib/api-client.ts`, que soporta tanto `GET` con query params como `POST` con body
+  JSON y timeout configurable — este último usado sólo por `identify_pokemon_card`, ya que una
+  llamada a Gemini con visión tarda más que un lookup de PokéAPI). Esto evita un ciclo de
+  dependencias (`packages/api` monta `@repo/mcp`; `packages/mcp` nunca importa `@repo/api`) y
+  reutiliza sin duplicar la caché de 24h de PokéAPI, las queries de Prisma, y la identificación de
+  cartas (`identify-pokemon-card.ts`) que ya usan `pokemon`/`collection`/`ai`.
+- **`identify_pokemon_card`** necesita los bytes de la imagen (`imageBase64`/`mimeType`) como
+  argumento de la tool, igual que el endpoint que envuelve. Es utilizable por cualquier cliente MCP
+  que ya tenga la imagen (Inspector, Claude Desktop, un script), pero **no** desde el chat de texto
+  propio (`collection-chat`, 5.5 más abajo): ese endpoint sólo acepta mensajes de texto, y un LLM
+  no puede generar en un tool-call bytes de una imagen que nunca vio como texto en el contexto.
 - **`search_pokemon`** además filtra por tipo: `pokemon.list` (`list-pokemon.ts`) gana un parámetro
   `type` opcional que golpea `GET /type/{type}` de PokéAPI (`fetchPokemonNamesByType`, mismo patrón de
   caché en memoria que el resto de `poke-api-client.ts`) — mejora que beneficia también al endpoint REST,

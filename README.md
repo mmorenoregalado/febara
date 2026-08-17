@@ -63,11 +63,18 @@ pnpm dev
 
 ## MCP
 
-The SaaS app exposes the user's Pokémon collection and PokéAPI search as **MCP tools**
-(`get_collection`, `search_pokemon`, `get_pokemon_stats`) over Streamable HTTP at
-`http://localhost:3000/api/mcp`, and a chat endpoint (`POST /ai/collection-chat`) that connects
-an LLM to those tools so you can ask natural-language questions about your collection. See
-`ARCHITECTURE.md` section 5.5 for the full design notes and rationale.
+The SaaS app exposes the user's Pokémon collection, PokéAPI search, and card identification as
+**MCP tools** (`get_collection`, `search_pokemon`, `get_pokemon_stats`, `identify_pokemon_card`)
+over Streamable HTTP at `http://localhost:3000/api/mcp`, and a chat endpoint
+(`POST /ai/collection-chat`) that connects an LLM to those tools so you can ask natural-language
+questions about your collection. See `ARCHITECTURE.md` section 5.5 for the full design notes and
+rationale.
+
+`identify_pokemon_card` wraps the same endpoint as the `/pokemon/identify` page
+(`POST /api/ai/identify-pokemon-card`), so it needs actual image bytes (base64) as input — the
+in-app text chat can't trigger it today (it only accepts text messages), but any MCP client that
+already has the image (Inspector with a pasted/uploaded base64 string, Claude Desktop, a script)
+can call it directly.
 
 There is no dedicated chat UI page yet — the LLM side is wired at the API level
 (`POST /ai/collection-chat`, protected, streamed) but not yet exposed through a page like the
@@ -102,11 +109,14 @@ In newer Inspector versions, servers are managed as named entries under **Server
      - Key: `Cookie`
      - Value: `better-auth.session_token=<the value you copied above>`
 3. Save, then connect — the server should show as **Connected**.
-4. Open the **Tools** tab. You should see `get_collection`, `search_pokemon`, and
-   `get_pokemon_stats`. Try:
+4. Open the **Tools** tab. You should see `get_collection`, `search_pokemon`,
+   `get_pokemon_stats`, and `identify_pokemon_card`. Try:
    - `get_collection` with no arguments.
    - `search_pokemon` with `{ "type": "water" }` or `{ "name": "char" }`.
    - `get_pokemon_stats` with `{ "idOrName": "pikachu" }`.
+   - `identify_pokemon_card` with `{ "imageBase64": "<base64 of a card photo>", "mimeType": "image/jpeg" }`
+     — e.g. `imageBase64=$(base64 -i card.jpg)` in a terminal, then paste the value in. This one
+     can take several seconds (it calls the Gemini vision model).
 
 If your Inspector version only exposes a single "Bearer Token"/"Authorization" field instead of
 arbitrary custom headers, use the sidebar connection settings for the server and look for a
@@ -126,4 +136,9 @@ curl "http://localhost:3000/api/pokemon?type=water&limit=5" \
 
 curl http://localhost:3000/api/pokemon/pikachu \
   -H "Cookie: better-auth.session_token=<value>"
+
+curl -X POST http://localhost:3000/api/ai/identify-pokemon-card \
+  -H "Cookie: better-auth.session_token=<value>" \
+  -H "Content-Type: application/json" \
+  -d "{\"imageBase64\": \"$(base64 -i card.jpg)\", \"mimeType\": \"image/jpeg\"}"
 ```

@@ -3,7 +3,7 @@
 		"pokedex-mcp": {
 			"url": "http://localhost:3000/api/mcp",
 			"headers": {
-				"Cookie": "better-auth.session_token=5oVvGuQobiwuVZSID295Ofusmek53LG2.BVeZJUBR2LdQVLfYV8TKaNGN0dM0CdYxgN6luRKHJUw%3D"
+				"Cookie": "better-auth.session_token=5oVvGuQobiwuVZSID295Ofusmek53LG2.BVeZJUBR2LdQVLfYV8TKaNGN0dM0CdYxgN6luRKHJUw="
 			}
 		}
 	}

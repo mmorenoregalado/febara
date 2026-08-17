@@ -2,6 +2,7 @@ import { McpServer } from "@modelcontextprotocol/server";
 
 import { registerGetCollectionTool } from "./tools/get-collection";
 import { registerGetPokemonStatsTool } from "./tools/get-pokemon-stats";
+import { registerIdentifyPokemonCardTool } from "./tools/identify-pokemon-card";
 import { registerSearchPokemonTool } from "./tools/search-pokemon";
 
 export function createPokedexMcpServer(): McpServer {
@@ -10,6 +11,7 @@ export function createPokedexMcpServer(): McpServer {
 	registerGetCollectionTool(server);
 	registerSearchPokemonTool(server);
 	registerGetPokemonStatsTool(server);
+	registerIdentifyPokemonCardTool(server);
 
 	return server;
 }

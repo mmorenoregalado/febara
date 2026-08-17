@@ -28,3 +28,20 @@ export const PokemonDetailSchema = PokemonSummarySchema.extend({
 	abilities: z.array(z.string()),
 	stats: PokemonStatsSchema,
 });
+
+/**
+ * Mirrors `packages/api/modules/ai/lib/schemas.ts`'s `IdentifyCardOutputSchema`
+ * — same independent-copy reasoning as above.
+ */
+export const IdentifyCardOutputSchema = z.discriminatedUnion("identified", [
+	z.object({
+		identified: z.literal(true),
+		confidence: z.enum(["high", "medium", "low"]),
+		pokemon: PokemonDetailSchema,
+	}),
+	z.object({
+		identified: z.literal(false),
+		confidence: z.enum(["high", "medium", "low"]).nullable(),
+		reason: z.string().nullable(),
+	}),
+]);
