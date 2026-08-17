@@ -7,7 +7,7 @@ Explicit user instructions win; if a documented command fails, report it rather 
 ## Stack
 
 - Nuxt 4, Vue 3, TypeScript, Node.js 22+, and pnpm workspaces
-- Turborepo, oRPC, Hono, Better Auth, Prisma, and Drizzle
+- Turborepo, oRPC, Hono, Better Auth, and Prisma
 - Tailwind CSS, Nuxt UI, and Reka UI
 - TanStack Vue Query, Zod 4, `@nuxtjs/i18n`, VueUse, Vitest, Playwright, Oxlint, and Oxfmt
 
@@ -129,8 +129,8 @@ oRPC modules live under `packages/api/modules`. Procedures use `publicProcedure`
 `protectedProcedure`, or `adminProcedure`, with route metadata, Zod input validation,
 middleware, and a handler. Follow `packages/api/modules/organizations/procedures/`.
 
-Keep database access in `packages/database`. Prisma owns the schema and migrations;
-Drizzle is used for query implementations. The database package scripts are:
+Keep database access in `packages/database`. Prisma owns the schema, migrations, and
+query implementations. The database package scripts are:
 
 ```bash
 pnpm --filter @repo/database generate

@@ -11,7 +11,7 @@ Use for persisted notification kinds or emitters. Do not insert rows directly fr
 
 ## Procedure
 
-1. Add the value to Prisma `NotificationType`; mirror PostgreSQL/MySQL/SQLite Drizzle enums and Drizzle notification query unions.
+1. Add the value to Prisma `NotificationType`.
 2. Run `pnpm --filter @repo/database generate`; never edit `packages/database/prisma/zod/index.ts`.
 3. Update `NOTIFICATION_TYPES` in `packages/notifications/src/types.ts`, `NotificationTypeId`, and `NOTIFICATION_GROUPS` in `catalog.ts` when configurable.
 4. Add labels/descriptions to all SaaS locales and an icon in `NotificationCenter.vue` when needed.
@@ -27,6 +27,5 @@ Schemas, constants, catalog, translations, icon, and emitter agree; preferences 
 
 ## Common mistakes
 
-- Updating only Prisma.
 - Omitting locale labels.
 - Bypassing link normalization in `createNotification`.

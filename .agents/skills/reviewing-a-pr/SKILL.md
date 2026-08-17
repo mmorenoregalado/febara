@@ -15,7 +15,7 @@ Use for read-only review and risk assessment. Do not modify code, push, or appro
 2. Map files to Nuxt pages/modules, Hono/oRPC, auth, database, mail, notifications, or shared packages.
 3. Compare with nearby canonical code. Check SSR safety, auto-imports, Nuxt UI forms, and typed translations.
 4. Trace authorization and tenancy from UI through oRPC to database. Client organization IDs require membership checks such as `verifyOrganizationMembership`.
-5. Check Prisma/Drizzle parity, generated-file edits, provider signature validation, idempotent persistence, and secret handling.
+5. Check generated-file edits, provider signature validation, idempotent persistence, and secret handling.
 6. Evaluate regression tests and compare commands with `.github/workflows/validate-prs.yml`; inspect failures via `gh run view <run-id> --log-failed`.
 7. When a PR changes scripts, paths, aliases, app/package boundaries, infrastructure, or canonical implementation patterns, require matching updates to `AGENTS.md` and every affected `.agents/skills/*/SKILL.md`; stale agent instructions are a structural regression.
 8. Report findings by severity with file/symbol, failure scenario, and fix. Separate blockers from optional improvements.

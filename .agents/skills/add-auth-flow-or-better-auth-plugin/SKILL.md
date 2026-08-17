@@ -15,7 +15,7 @@ Use for authentication and account lifecycle. Do not use ad hoc cookies or bypas
 2. Add server plugins to `auth.plugins` and matching client plugins to both Vue clients when client methods exist. Follow `packages/auth/plugins/invitation-only/index.ts` for a custom `BetterAuthPlugin`.
 3. Preserve trusted origins, locale extraction, logging, cleanup, organization seat hooks, and localized mail callbacks.
 4. Update Vue flows under `apps/saas/modules/auth/`; use `useAuthClient`, `useSession`, `sessionQueryKey` invalidation, Nuxt navigation, `UForm`, and Zod.
-5. Run `pnpm --filter @repo/auth migrate` for auth-owned schema changes. The command writes the Prisma source at `packages/database/prisma/schema.prisma`; review that diff for application fields, mirror all three Drizzle dialect schemas and both query layers, then run `pnpm --filter @repo/database generate`. Never edit generated client/Zod output.
+5. Run `pnpm --filter @repo/auth migrate` for auth-owned schema changes. The command writes the Prisma source at `packages/database/prisma/schema.prisma`; review that diff for application fields, then run `pnpm --filter @repo/database generate`. Never edit generated client/Zod output.
 6. Add all locale strings and update `packages/mail/emails/` templates when the flow mails users.
 7. Test hooks/procedures with Vitest and user flows in `apps/saas/e2e/auth.spec.ts`; run root gates.
 

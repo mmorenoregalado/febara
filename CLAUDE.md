@@ -15,7 +15,7 @@ This file adds command references and an architecture overview that complement (
 ## What this is
 
 PokeDex Manager — a Nuxt 4 / Vue 3 SaaS starter monorepo (`pnpm` workspaces + Turborepo). Node.js 22+, TypeScript,
-oRPC, Hono, Better Auth, Prisma + Drizzle, Tailwind CSS v4, Nuxt UI, TanStack Vue Query, Zod 4, Vitest, Playwright,
+oRPC, Hono, Better Auth, Prisma, Tailwind CSS v4, Nuxt UI, TanStack Vue Query, Zod 4, Vitest, Playwright,
 Oxlint, and Oxfmt.
 
 ## Commands
@@ -102,18 +102,12 @@ registered once in `packages/api/orpc/router.ts`. Procedures come in three tiers
 Apps consume the router through `useORPC()` + auto-imported TanStack Vue Query (`useQuery`/`useMutation`), per
 `apps/saas/modules/shared/composables/use-orpc.ts`.
 
-### Database: Prisma + Drizzle, dual but asymmetric
+### Database: Prisma
 
 `packages/database/prisma/schema.prisma` is the single source of truth for the schema and for migrations
-(`prisma migrate dev`, `prisma db push`). `packages/database/drizzle/schema/{postgres,mysql,sqlite}.ts` is a
-parallel, hand-maintained query implementation kept _semantically_ (not textually) in sync — it exists as a
-swappable alternative, not as the migration path (there is no Drizzle-Kit migration command wired up).
-
-Currently `packages/database/index.ts` re-exports only the **Prisma** implementation
-(`packages/database/prisma/{client,queries,zod}.ts`); the Drizzle query layer (`packages/database/drizzle/queries/`)
-mirrors the same function names/signatures but isn't the active export. When changing a model or an exported
-query, update the Prisma source, mirror it in all three Drizzle dialect files, and keep both `queries/<domain>.ts`
-implementations aligned — see `.agents/skills/database-schema-change/SKILL.md`. Never hand-edit
+(`prisma migrate dev`, `prisma db push`). `packages/database/index.ts` re-exports the Prisma implementation
+(`packages/database/prisma/{client,queries,zod}.ts`). When changing a model or an exported query, update the
+Prisma source — see `.agents/skills/database-schema-change/SKILL.md`. Never hand-edit
 `packages/database/prisma/generated/` or `packages/database/prisma/zod/index.ts` (regenerate instead).
 
 ### Permissions: Permix
