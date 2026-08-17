@@ -45,6 +45,10 @@ const RawPokemonListResponseSchema = z.object({
 	results: z.array(z.object({ name: z.string(), url: z.string() })),
 });
 
+const RawPokemonTypeResponseSchema = z.object({
+	pokemon: z.array(z.object({ pokemon: z.object({ name: z.string(), url: z.string() }) })),
+});
+
 const RawPokemonSchema = z.object({
 	id: z.number(),
 	name: z.string(),
@@ -68,6 +72,10 @@ type PokemonIndexEntry = { name: string; url: string };
 
 let nameIndexCache: { promise: Promise<PokemonIndexEntry[]>; cachedAt: number } | undefined;
 const pokemonDetailCache = new Map<string, { promise: Promise<RawPokemon>; cachedAt: number }>();
+const pokemonByTypeCache = new Map<
+	string,
+	{ promise: Promise<PokemonIndexEntry[]>; cachedAt: number }
+>();
 
 function isFresh(cachedAt: number): boolean {
 	return Date.now() - cachedAt < CACHE_TTL_MS;
@@ -87,6 +95,28 @@ export function fetchPokemonNameIndex(): Promise<PokemonIndexEntry[]> {
 	});
 
 	nameIndexCache = { promise, cachedAt: Date.now() };
+	return promise;
+}
+
+/**
+ * Names of every Pokémon of a given type, via PokéAPI's `/type/{type}` endpoint —
+ * cheaper than fetching every Pokémon's detail just to filter by type client-side.
+ */
+export function fetchPokemonNamesByType(type: string): Promise<PokemonIndexEntry[]> {
+	const cached = pokemonByTypeCache.get(type);
+	if (cached && isFresh(cached.cachedAt)) {
+		return cached.promise;
+	}
+
+	const promise = pokeApiFetch(`/type/${type}`).then((raw) => {
+		try {
+			return RawPokemonTypeResponseSchema.parse(raw).pokemon.map((entry) => entry.pokemon);
+		} catch {
+			throw new PokeApiInvalidResponseError();
+		}
+	});
+
+	pokemonByTypeCache.set(type, { promise, cachedAt: Date.now() });
 	return promise;
 }
 

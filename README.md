@@ -60,3 +60,70 @@ pnpm dev
 | SaaS      | http://localhost:3000 |
 | Marketing | http://localhost:3001 |
 | Docs      | http://localhost:3002 |
+
+## MCP
+
+The SaaS app exposes the user's Pokémon collection and PokéAPI search as **MCP tools**
+(`get_collection`, `search_pokemon`, `get_pokemon_stats`) over Streamable HTTP at
+`http://localhost:3000/api/mcp`, and a chat endpoint (`POST /ai/collection-chat`) that connects
+an LLM to those tools so you can ask natural-language questions about your collection. See
+`ARCHITECTURE.md` section 5.5 for the full design notes and rationale.
+
+There is no dedicated chat UI page yet — the LLM side is wired at the API level
+(`POST /ai/collection-chat`, protected, streamed) but not yet exposed through a page like the
+existing `/chatbot`. The way to exercise the feature today is the MCP server itself, either
+through MCP Inspector or by calling the tools' underlying REST endpoints directly.
+
+### Get a session cookie (needed for both options below)
+
+`/api/mcp` and its tools require an authenticated session — same as `pokemon.list`/`pokemon.get`
+today, both already `protectedProcedure`.
+
+1. `pnpm dev`, then log into the SaaS app at `http://localhost:3000` in your browser.
+2. Open devtools → **Application** (Chrome) or **Storage** (Firefox) → Cookies →
+   `http://localhost:3000`.
+3. Copy the **value** of the `better-auth.session_token` cookie (not the name, just the value).
+
+### Try the MCP server with MCP Inspector
+
+```bash
+npx @modelcontextprotocol/inspector
+```
+
+This opens a local web UI at `http://localhost:6274` (or similar — check the terminal output).
+In newer Inspector versions, servers are managed as named entries under **Servers**:
+
+1. Click **Add Servers → + Add manually**.
+2. Fill in the form:
+   - **Name**: anything, e.g. `pokedex-mcp`.
+   - **Transport Type**: `Streamable HTTP` (not `STDIO`).
+   - **URL**: `http://localhost:3000/api/mcp`
+   - Expand **Custom Headers** (sometimes under an "Advanced" toggle) and add one header:
+     - Key: `Cookie`
+     - Value: `better-auth.session_token=<the value you copied above>`
+3. Save, then connect — the server should show as **Connected**.
+4. Open the **Tools** tab. You should see `get_collection`, `search_pokemon`, and
+   `get_pokemon_stats`. Try:
+   - `get_collection` with no arguments.
+   - `search_pokemon` with `{ "type": "water" }` or `{ "name": "char" }`.
+   - `get_pokemon_stats` with `{ "idOrName": "pikachu" }`.
+
+If your Inspector version only exposes a single "Bearer Token"/"Authorization" field instead of
+arbitrary custom headers, use the sidebar connection settings for the server and look for a
+"Header Name" override so you can send `Cookie` instead of `Authorization`.
+
+### Try it via curl / REST (no Inspector needed)
+
+The tools are thin wrappers over existing REST endpoints, so you can also just call those
+directly with the session cookie, without going through the MCP protocol at all:
+
+```bash
+curl http://localhost:3000/api/collection \
+  -H "Cookie: better-auth.session_token=<value>"
+
+curl "http://localhost:3000/api/pokemon?type=water&limit=5" \
+  -H "Cookie: better-auth.session_token=<value>"
+
+curl http://localhost:3000/api/pokemon/pikachu \
+  -H "Cookie: better-auth.session_token=<value>"
+```

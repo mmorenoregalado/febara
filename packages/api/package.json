@@ -20,6 +20,7 @@
 		"@repo/i18n": "workspace:*",
 		"@repo/logs": "workspace:*",
 		"@repo/mail": "workspace:*",
+		"@repo/mcp": "workspace:*",
 		"@repo/notifications": "workspace:*",
 		"@repo/permissions": "workspace:*",
 		"@repo/storage": "workspace:*",

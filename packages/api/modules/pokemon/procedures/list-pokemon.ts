@@ -5,6 +5,7 @@ import { toORPCError } from "../lib/errors";
 import {
 	fetchPokemonByIdOrName,
 	fetchPokemonNameIndex,
+	fetchPokemonNamesByType,
 	toPokemonSummary,
 } from "../lib/poke-api-client";
 import { PokemonSummarySchema } from "../lib/schemas";
@@ -15,7 +16,8 @@ export const listPokemon = protectedProcedure
 		path: "/pokemon",
 		tags: ["Pokemon"],
 		summary: "List/search Pokémon",
-		description: "Search Pokémon by name (substring match) with pagination, backed by PokéAPI",
+		description:
+			"Search Pokémon by name (substring match) and/or type, with pagination, backed by PokéAPI",
 	})
 	.input(
 		z.object({
@@ -24,6 +26,10 @@ export const listPokemon = protectedProcedure
 				.string()
 				.nullish()
 				.transform((q) => q ?? undefined),
+			type: z
+				.string()
+				.nullish()
+				.transform((t) => t ?? undefined),
 			// Coerce: GET / OpenAPI query params are strings, not JSON numbers
 			limit: z.coerce.number().min(1).max(100).default(20),
 			offset: z.coerce.number().min(0).default(0),
@@ -35,8 +41,11 @@ export const listPokemon = protectedProcedure
 			total: z.number().int().nonnegative(),
 		}),
 	)
-	.handler(async ({ input: { query, limit, offset } }) => {
-		const index = await fetchPokemonNameIndex().catch((error) => {
+	.handler(async ({ input: { query, type, limit, offset } }) => {
+		const indexPromise = type
+			? fetchPokemonNamesByType(type.toLowerCase())
+			: fetchPokemonNameIndex();
+		const index = await indexPromise.catch((error) => {
 			throw toORPCError(error);
 		});
 

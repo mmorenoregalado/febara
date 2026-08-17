@@ -14,14 +14,16 @@ import { auth } from "@repo/auth";
 
 vi.mock("../lib/poke-api-client", () => ({
 	fetchPokemonNameIndex: vi.fn(),
+	fetchPokemonNamesByType: vi.fn(),
 	fetchPokemonByIdOrName: vi.fn(),
 	toPokemonSummary: vi.fn(),
 }));
 
-import { PokeApiUnavailableError } from "../lib/errors";
+import { PokeApiNotFoundError, PokeApiUnavailableError } from "../lib/errors";
 import {
 	fetchPokemonByIdOrName,
 	fetchPokemonNameIndex,
+	fetchPokemonNamesByType,
 	toPokemonSummary,
 } from "../lib/poke-api-client";
 import { listPokemon } from "./list-pokemon";
@@ -135,5 +137,52 @@ describe("listPokemon", () => {
 
 		expect(result.total).toBe(4);
 		expect(result.pokemon.map((p) => p.name)).toEqual(["bulbasaur", "venusaur"]);
+	});
+
+	it("filters by type using fetchPokemonNamesByType instead of the full name index", async () => {
+		vi.mocked(auth.api.getSession).mockResolvedValue(authenticatedSession);
+		vi.mocked(fetchPokemonNamesByType).mockResolvedValue([
+			{ name: "squirtle", url: "" },
+			{ name: "wartortle", url: "" },
+		]);
+
+		const result = await call(
+			listPokemon,
+			{ query: null, type: "water", limit: 20, offset: 0 },
+			{ context: { headers: new Headers() } },
+		);
+
+		expect(fetchPokemonNamesByType).toHaveBeenCalledWith("water");
+		expect(fetchPokemonNameIndex).not.toHaveBeenCalled();
+		expect(result.pokemon.map((p) => p.name)).toEqual(["squirtle", "wartortle"]);
+	});
+
+	it("combines type and name filters", async () => {
+		vi.mocked(auth.api.getSession).mockResolvedValue(authenticatedSession);
+		vi.mocked(fetchPokemonNamesByType).mockResolvedValue([
+			{ name: "squirtle", url: "" },
+			{ name: "wartortle", url: "" },
+		]);
+
+		const result = await call(
+			listPokemon,
+			{ query: "war", type: "water", limit: 20, offset: 0 },
+			{ context: { headers: new Headers() } },
+		);
+
+		expect(result.pokemon.map((p) => p.name)).toEqual(["wartortle"]);
+	});
+
+	it("propagates a not-found error for an unknown type", async () => {
+		vi.mocked(auth.api.getSession).mockResolvedValue(authenticatedSession);
+		vi.mocked(fetchPokemonNamesByType).mockRejectedValue(new PokeApiNotFoundError());
+
+		await expect(
+			call(
+				listPokemon,
+				{ query: null, type: "not-a-type", limit: 20, offset: 0 },
+				{ context: { headers: new Headers() } },
+			),
+		).rejects.toMatchObject({ code: "NOT_FOUND" });
 	});
 });

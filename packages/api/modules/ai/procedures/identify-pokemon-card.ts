@@ -3,7 +3,7 @@ import {
 	type CardIdentification,
 	CardIdentificationSchema,
 	generateText,
-	identifyCardModel,
+	geminiModel,
 	NoOutputGeneratedError,
 	Output,
 } from "@repo/ai";
@@ -38,7 +38,7 @@ export const identifyPokemonCard = protectedProcedure
 		let identification: CardIdentification;
 		try {
 			const result = await generateText({
-				model: identifyCardModel,
+				model: geminiModel,
 				output: Output.object({ schema: CardIdentificationSchema }),
 				messages: [
 					{

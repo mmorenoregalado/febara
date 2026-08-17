@@ -16,7 +16,7 @@ vi.mock("@repo/ai", () => ({
 	buildCardIdentificationPrompt: vi.fn(() => "prompt"),
 	CardIdentificationSchema: {},
 	generateText: vi.fn(),
-	identifyCardModel: {},
+	geminiModel: {},
 	NoOutputGeneratedError: { isInstance: vi.fn(() => false) },
 	Output: { object: vi.fn(() => ({})) },
 }));

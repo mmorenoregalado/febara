@@ -1,5 +1,6 @@
 import { auth } from "@repo/auth";
 import { logger } from "@repo/logs";
+import { mcpApp } from "@repo/mcp";
 import { getTrustedOrigins } from "@repo/utils";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
@@ -28,6 +29,8 @@ export const app = new Hono()
 	.on(["POST", "GET"], "/auth/**", (c) => auth.handler(c.req.raw))
 	// Health check
 	.get("/health", (c) => c.text("OK"))
+	// MCP server (Streamable HTTP) — see ARCHITECTURE.md section 5.5
+	.route("/mcp", mcpApp)
 	// oRPC handlers (for RPC and OpenAPI)
 	.use("*", async (c, next) => {
 		const context = {

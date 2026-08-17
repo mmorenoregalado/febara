@@ -1,0 +1,22 @@
+{
+	"name": "@repo/mcp",
+	"version": "0.0.0",
+	"main": "./index.ts",
+	"scripts": {
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"type-check": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@modelcontextprotocol/server": "catalog:",
+		"@repo/utils": "workspace:*",
+		"hono": "catalog:",
+		"zod": "catalog:"
+	},
+	"devDependencies": {
+		"@repo/tsconfig": "workspace:*",
+		"@vitest/coverage-v8": "catalog:",
+		"typescript": "catalog:",
+		"vitest": "catalog:"
+	}
+}

@@ -1,7 +1,5 @@
 import { getBaseUrl } from "@repo/utils";
 
-import type { ApiConfig } from "./types";
-
 export const config = {
 	saasUrl: getBaseUrl(process.env.NUXT_PUBLIC_SAAS_URL),
-} satisfies ApiConfig;
+} as const;

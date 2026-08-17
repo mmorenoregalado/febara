@@ -8,6 +8,8 @@ export class GeminiUnavailableError extends Error {}
 
 export class GeminiInvalidResponseError extends Error {}
 
+export class McpUnavailableError extends Error {}
+
 export function toORPCError(error: unknown): ORPCError<string, unknown> {
 	if (error instanceof InvalidImageError) {
 		return new ORPCError("BAD_REQUEST", { message: "Invalid image" });
@@ -17,7 +19,11 @@ export function toORPCError(error: unknown): ORPCError<string, unknown> {
 		return new ORPCError("PAYLOAD_TOO_LARGE", { message: "Image is too large" });
 	}
 
-	if (error instanceof GeminiUnavailableError || error instanceof GeminiInvalidResponseError) {
+	if (
+		error instanceof GeminiUnavailableError ||
+		error instanceof GeminiInvalidResponseError ||
+		error instanceof McpUnavailableError
+	) {
 		return new ORPCError("BAD_GATEWAY");
 	}
 
