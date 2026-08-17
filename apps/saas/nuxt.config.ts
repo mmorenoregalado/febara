@@ -130,7 +130,7 @@ export default defineNuxtConfig({
 
 	// @nuxt/image
 	image: {
-		domains: ["lh3.googleusercontent.com", appHostname],
+		domains: [appHostname],
 	},
 
 	vite: {

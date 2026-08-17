@@ -133,6 +133,7 @@
 			"collapseSidebar": "Contraer barra lateral",
 			"expandSidebar": "Expandir barra lateral",
 			"organizationSettings": "Configuración de organización",
+			"pokemon": "Explorador de Pokémon",
 			"start": "Inicio"
 		},
 		"userMenu": {
@@ -202,13 +203,11 @@
 			"title": "¿Olvidaste tu contraseña?"
 		},
 		"login": {
-			"continueWith": "O continuar con",
 			"createAnAccount": "Crear una cuenta",
 			"dontHaveAnAccount": "¿Aún no tienes una cuenta?",
 			"forgotPassword": "¿Olvidaste tu contraseña?",
 			"hints": {
 				"invalidCredentials": "El correo o la contraseña que ingresaste no son válidos. Por favor, inténtalo de nuevo.",
-				"socialSigninFailed": "No se pudo iniciar sesión. Por favor, inténtalo de nuevo.",
 				"linkSent": {
 					"message": "Te hemos enviado un enlace para continuar. Por favor, revisa tu bandeja de entrada.",
 					"title": "Enlace enviado"
@@ -449,6 +448,42 @@
 			"subtitle": "¡Bienvenido a la página de inicio de esta organización!"
 		}
 	},
+	"pokemon": {
+		"title": "Explorador de Pokémon",
+		"description": "Busca y explora Pokémon.",
+		"search": "Buscar por nombre...",
+		"loading": "Cargando Pokémon...",
+		"empty": "No se encontraron Pokémon.",
+		"error": {
+			"title": "No se pudo cargar los Pokémon"
+		},
+		"card": {
+			"unknownType": "Desconocido"
+		},
+		"detail": {
+			"back": "Volver a la lista",
+			"info": "Información",
+			"height": "Altura",
+			"weight": "Peso",
+			"types": "Tipos",
+			"abilities": "Habilidades",
+			"notFound": "Pokémon no encontrado",
+			"notFoundDescription": "El Pokémon que buscas no existe o no está disponible.",
+			"error": {
+				"title": "No se pudo cargar este Pokémon",
+				"description": "Algo salió mal al cargar este Pokémon. Inténtalo de nuevo."
+			},
+			"stats": {
+				"title": "Estadísticas",
+				"hp": "PS",
+				"attack": "Ataque",
+				"defense": "Defensa",
+				"specialAttack": "Atq. Esp.",
+				"specialDefense": "Def. Esp.",
+				"speed": "Velocidad"
+			}
+		}
+	},
 	"settings": {
 		"account": {
 			"avatar": {
@@ -517,12 +552,6 @@
 						"success": "La contraseña se actualizó correctamente"
 					},
 					"title": "Tu contraseña"
-				},
-				"connectedAccounts": {
-					"connect": "Conectar",
-					"connected": "Conectado",
-					"disconnect": "Desconectar",
-					"title": "Cuentas conectadas"
 				},
 				"passkeys": {
 					"addPasskey": "Añadir passkey",

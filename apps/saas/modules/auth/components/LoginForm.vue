@@ -5,8 +5,6 @@
 
 	import { resolvePostLoginRedirect } from "~/modules/auth/lib/post-login-redirect";
 
-	import { oAuthProviders } from "./SocialSigninButton.vue";
-
 	const { public: config } = useRuntimeConfig();
 	const { t } = useTranslations();
 	const authClient = useAuthClient();
@@ -200,28 +198,6 @@
 					{{ state.mode === "password" ? t("auth.login.submit") : t("auth.login.sendMagicLink") }}
 				</UButton>
 			</UForm>
-
-			<template v-if="authConfig.enableSocialLogin">
-				<div class="my-6 relative">
-					<div class="inset-0 absolute flex items-center">
-						<span class="w-full border-t" />
-					</div>
-					<div class="relative flex justify-center">
-						<span class="bg-default text-dimmed px-2 text-sm font-medium">
-							{{ $t("auth.login.continueWith") }}
-						</span>
-					</div>
-				</div>
-
-				<div class="gap-2 grid grid-cols-1 items-stretch">
-					<SocialSigninButton
-						v-for="providerId of Object.keys(oAuthProviders)"
-						:key="providerId"
-						:provider="providerId"
-						:redirectTo="redirectTo"
-					/>
-				</div>
-			</template>
 
 			<UButton
 				v-if="authConfig.enablePasskeys"

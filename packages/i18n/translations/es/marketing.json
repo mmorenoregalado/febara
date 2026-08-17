@@ -165,7 +165,7 @@
 			},
 			"authMethods": {
 				"question": "¿Qué métodos de inicio de sesión se admiten?",
-				"answer": "Email y contraseña, magic links, passkeys e inicio de sesión con Google, con verificación en dos pasos opcional."
+				"answer": "Email y contraseña, magic links y passkeys, con verificación en dos pasos opcional."
 			},
 			"selfHost": {
 				"question": "¿Puedo alojar PokeDex Manager en mi propia infraestructura?",
@@ -221,7 +221,7 @@
 			"feature2": {
 				"title": "Inicio de sesión seguro para cada entrenador",
 				"subtitle": "Passkeys, verificación en dos pasos y magic links — sin escribir tus propios flujos de auth.",
-				"description": "Inicio de sesión con Google, passkeys, email y contraseña, y magic links vienen listos de fábrica, con verificación en dos pasos para las cuentas que la necesiten.",
+				"description": "Passkeys, email y contraseña, y magic links vienen listos de fábrica, con verificación en dos pasos para las cuentas que la necesiten.",
 				"benefit1": {
 					"title": "Inicio de sesión con passkey",
 					"description": "Los entrenadores inician sesión con la biometría del dispositivo — sin contraseña."

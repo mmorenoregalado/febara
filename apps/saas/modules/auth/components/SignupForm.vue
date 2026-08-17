@@ -1,14 +1,8 @@
 <script setup lang="ts">
 	import type { FormSubmitEvent } from "@nuxt/ui";
-	import { config as authConfig } from "@repo/auth/config";
 	import { passwordSchema } from "@repo/utils";
 	import { z } from "zod";
 
-	import { resolvePostLoginRedirect } from "~/modules/auth/lib/post-login-redirect";
-
-	import { oAuthProviders } from "./SocialSigninButton.vue";
-
-	const { public: config } = useRuntimeConfig();
 	const { t } = useTranslations();
 	const authClient = useAuthClient();
 
@@ -22,16 +16,7 @@
 
 	const { invitationId, invitationRedirectPath, buildAuthPathWithInvitation } =
 		useInvitationQuery();
-	const redirectToParam = useRouteQueryParam("redirectTo");
 	const emailParam = useRouteQueryParam("email");
-
-	const redirectTo = computed(() =>
-		resolvePostLoginRedirect({
-			invitationRedirectPath: invitationRedirectPath.value,
-			redirectToParam: redirectToParam.value,
-			redirectAfterSignIn: config.redirectAfterSignIn,
-		}),
-	);
 
 	const state = reactive<Schema>({
 		name: "",
@@ -85,19 +70,6 @@
 
 		<template v-else>
 			<OrganizationInvitationInfo v-if="invitationId" />
-
-			<template v-if="authConfig.enableSocialLogin">
-				<div class="gap-4 md:grid-cols-2 grid grid-cols-1 items-stretch">
-					<SocialSigninButton
-						v-for="providerId of Object.keys(oAuthProviders)"
-						:key="providerId"
-						:provider="providerId"
-						:redirectTo="redirectTo"
-					/>
-				</div>
-
-				<hr class="my-8" />
-			</template>
 
 			<UForm
 				:schema="schema"

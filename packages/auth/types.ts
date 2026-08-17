@@ -41,10 +41,6 @@ export type AuthConfig = {
 	 */
 	enableMagicLink: boolean;
 	/**
-	 * Enables configured third-party OAuth providers in the sign-in UI.
-	 */
-	enableSocialLogin: boolean;
-	/**
 	 * Enables passkey registration and sign-in support.
 	 */
 	enablePasskeys: boolean;

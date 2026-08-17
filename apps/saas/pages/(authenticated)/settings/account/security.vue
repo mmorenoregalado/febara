@@ -33,7 +33,6 @@
 			<ChangePasswordForm v-if="userHasPassword" />
 			<SetPasswordForm v-else />
 		</template>
-		<ConnectedAccounts />
 		<Passkeys />
 		<TwoFactorAuthentication />
 		<ActiveSessions />

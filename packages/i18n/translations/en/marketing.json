@@ -165,7 +165,7 @@
 			},
 			"authMethods": {
 				"question": "What sign-in methods are supported?",
-				"answer": "Email and password, magic links, passkeys, and Google sign-in, with optional two-factor verification."
+				"answer": "Email and password, magic links, and passkeys, with optional two-factor verification."
 			},
 			"selfHost": {
 				"question": "Can I self-host PokeDex Manager?",
@@ -221,7 +221,7 @@
 			"feature2": {
 				"title": "Secure sign-in for every trainer",
 				"subtitle": "Passkeys, two-factor verification, and magic links — without writing your own auth flows.",
-				"description": "Google sign-in, passkeys, email and password, and magic links ship out of the box, with two-factor verification for accounts that need it.",
+				"description": "Passkeys, email and password, and magic links ship out of the box, with two-factor verification for accounts that need it.",
 				"benefit1": {
 					"title": "Passkey sign-in",
 					"description": "Trainers sign in with device biometrics — no password required."

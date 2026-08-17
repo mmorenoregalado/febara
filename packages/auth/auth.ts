@@ -138,12 +138,6 @@ export const auth = betterAuth({
 		expiresIn: config.sessionCookieMaxAge,
 		freshAge: 0,
 	},
-	account: {
-		accountLinking: {
-			enabled: true,
-			trustedProviders: ["google"],
-		},
-	},
 	hooks: {
 		before: createAuthMiddleware(async (ctx) => {
 			if (ctx.path === "/delete-user") {
@@ -282,13 +276,6 @@ export const auth = betterAuth({
 				},
 				locale,
 			});
-		},
-	},
-	socialProviders: {
-		google: {
-			clientId: process.env.GOOGLE_CLIENT_ID as string,
-			clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-			scope: ["email", "profile"],
 		},
 	},
 	plugins: [
