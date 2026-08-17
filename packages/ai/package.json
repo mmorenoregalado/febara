@@ -8,9 +8,11 @@
 	},
 	"dependencies": {
 		"@ai-sdk/anthropic": "catalog:",
+		"@ai-sdk/google": "catalog:",
 		"@ai-sdk/openai": "catalog:",
 		"ai": "catalog:",
-		"openai": "catalog:"
+		"openai": "catalog:",
+		"zod": "catalog:"
 	},
 	"devDependencies": {
 		"@repo/tsconfig": "workspace:*",

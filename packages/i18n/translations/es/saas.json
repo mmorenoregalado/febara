@@ -133,6 +133,7 @@
 			"collapseSidebar": "Contraer barra lateral",
 			"collection": "Mi colección",
 			"expandSidebar": "Expandir barra lateral",
+			"identifyCard": "Identificar carta",
 			"organizationSettings": "Configuración de organización",
 			"pokemon": "Explorador de Pokémon",
 			"start": "Inicio"
@@ -515,6 +516,41 @@
 				"specialAttack": "Atq. Esp.",
 				"specialDefense": "Def. Esp.",
 				"speed": "Velocidad"
+			}
+		},
+		"identify": {
+			"title": "Identificar una carta de Pokémon",
+			"description": "Sube o arrastra una foto de una carta de Pokémon e intentaremos identificar al Pokémon.",
+			"upload": {
+				"cta": "Seleccionar una imagen",
+				"dragHint": "Arrastra una imagen aquí",
+				"hint": "JPG, PNG o WEBP, hasta 10MB"
+			},
+			"actions": {
+				"identify": "Identificar Pokémon",
+				"retry": "Intentar con otra imagen",
+				"identifying": "Analizando carta...",
+				"viewDetail": "Ver detalle del Pokémon"
+			},
+			"result": {
+				"confidence": {
+					"label": "Confianza",
+					"high": "Alta",
+					"medium": "Media",
+					"low": "Baja"
+				},
+				"lowConfidenceWarning": "Esta identificación podría no ser precisa. Verifica antes de agregarla a tu colección."
+			},
+			"empty": {
+				"title": "No pudimos identificar esta carta",
+				"description": "Intenta con una foto más clara, con buena iluminación y la carta completa en el encuadre."
+			},
+			"errors": {
+				"invalidImage": "No se puede usar esta imagen. Selecciona un archivo JPG, PNG o WEBP.",
+				"imageTooLarge": "La imagen es demasiado grande. El tamaño máximo es 10MB.",
+				"uploadError": "Algo salió mal al subir la imagen. Inténtalo de nuevo.",
+				"serviceUnavailable": "El servicio de identificación no está disponible temporalmente. Inténtalo de nuevo en un momento.",
+				"generic": "Algo salió mal al identificar la carta. Inténtalo de nuevo."
 			}
 		}
 	},

@@ -94,13 +94,21 @@
 				label: t("app.menu.pokemon"),
 				href: "/",
 				icon: "i-lucide-gamepad-2",
-				isActive: route.path === "/" || route.path.startsWith("/pokemon/"),
+				isActive:
+					route.path === "/" ||
+					(route.path.startsWith("/pokemon/") && !route.path.startsWith("/pokemon/identify")),
 			},
 			{
 				label: t("app.menu.collection"),
 				href: "/collection",
 				icon: "i-lucide-heart",
 				isActive: route.path.startsWith("/collection"),
+			},
+			{
+				label: t("app.menu.identifyCard"),
+				href: "/pokemon/identify",
+				icon: "i-lucide-scan-line",
+				isActive: route.path.startsWith("/pokemon/identify"),
 			},
 			{
 				label: t("app.menu.aiChatbot"),

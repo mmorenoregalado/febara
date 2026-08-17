@@ -133,6 +133,7 @@
 			"collapseSidebar": "Collapse sidebar",
 			"collection": "My Collection",
 			"expandSidebar": "Expand sidebar",
+			"identifyCard": "Identify card",
 			"organizationSettings": "Organization settings",
 			"pokemon": "Pokémon Explorer",
 			"start": "Start"
@@ -515,6 +516,41 @@
 				"specialAttack": "Sp. Atk",
 				"specialDefense": "Sp. Def",
 				"speed": "Speed"
+			}
+		},
+		"identify": {
+			"title": "Identify a Pokémon card",
+			"description": "Upload or drag a photo of a Pokémon trading card and we'll try to identify the Pokémon.",
+			"upload": {
+				"cta": "Select an image",
+				"dragHint": "Drag an image here",
+				"hint": "JPG, PNG or WEBP, up to 10MB"
+			},
+			"actions": {
+				"identify": "Identify Pokémon",
+				"retry": "Try another image",
+				"identifying": "Analyzing card...",
+				"viewDetail": "View Pokémon detail"
+			},
+			"result": {
+				"confidence": {
+					"label": "Confidence",
+					"high": "High",
+					"medium": "Medium",
+					"low": "Low"
+				},
+				"lowConfidenceWarning": "This identification may not be accurate. Double-check before adding it to your collection."
+			},
+			"empty": {
+				"title": "We couldn't identify this card",
+				"description": "Try a clearer photo, with good lighting and the whole card in frame."
+			},
+			"errors": {
+				"invalidImage": "This image can't be used. Please select a JPG, PNG or WEBP file.",
+				"imageTooLarge": "The image is too large. Maximum size is 10MB.",
+				"uploadError": "Something went wrong while uploading the image. Please try again.",
+				"serviceUnavailable": "The identification service is temporarily unavailable. Please try again in a moment.",
+				"generic": "Something went wrong while identifying the card. Please try again."
 			}
 		}
 	},
