@@ -148,13 +148,17 @@
 		},
 		"collectionInsights": {
 			"badge": "Análisis automático",
+			"title": "Información de la colección",
+			"description": "Obtén un análisis con IA de las fortalezas de tu colección, la distribución de tipos y recomendaciones personalizadas.",
 			"actions": {
 				"analyze": "Analizar mi colección",
 				"refresh": "Actualizar análisis",
 				"retry": "Reintentar",
-				"analyzing": "Analizando tu colección..."
+				"analyzing": "Analizando tu colección...",
+				"scanning": "Escaneando tu colección Pokémon..."
 			},
 			"result": {
+				"summaryTitle": "Resumen",
 				"typeDistributionTitle": "Distribución por tipo",
 				"strengthsTitle": "Fortalezas",
 				"gapsTitle": "Huecos",

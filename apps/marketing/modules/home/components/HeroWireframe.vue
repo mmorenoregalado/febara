@@ -31,7 +31,7 @@
 			</div>
 
 			<div
-				class="md:min-h-[28rem] gap-6 p-6 sm:p-8 bg-muted/35 flex min-h-[22rem] flex-col items-center justify-center lg:flex-row"
+				class="md:min-h-[28rem] gap-6 p-6 sm:p-8 bg-muted/35 lg:flex-row flex min-h-[22rem] flex-col items-center justify-center"
 			>
 				<div class="gap-2 flex flex-col items-center">
 					<div
@@ -44,15 +44,12 @@
 
 				<UIcon
 					name="i-lucide-arrow-right"
-					class="text-highlighted/25 hidden size-6 shrink-0 lg:block"
+					class="text-highlighted/25 size-6 lg:block hidden shrink-0"
 				/>
-				<UIcon
-					name="i-lucide-arrow-down"
-					class="text-highlighted/25 size-6 shrink-0 lg:hidden"
-				/>
+				<UIcon name="i-lucide-arrow-down" class="text-highlighted/25 size-6 lg:hidden shrink-0" />
 
 				<div
-					class="rounded-xl border-default/70 bg-elevated gap-3 p-5 flex w-full max-w-[15rem] flex-col items-center border text-center shadow-sm"
+					class="rounded-xl border-default/70 bg-elevated gap-3 p-5 shadow-sm flex w-full max-w-[15rem] flex-col items-center border text-center"
 				>
 					<img
 						:src="PREVIEW_POKEMON_IMAGE_URL"

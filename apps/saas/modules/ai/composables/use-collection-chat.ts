@@ -1,12 +1,15 @@
 import { eventIteratorToStream, ORPCError } from "@orpc/client";
 import type { UIMessage } from "@repo/ai";
-import { useMutation } from "@tanstack/vue-query";
 import type { ApiRouterOutputs } from "@repo/api/orpc/router";
+import { useMutation } from "@tanstack/vue-query";
 
 type TextPart = Extract<UIMessage["parts"][number], { type: "text" }>;
 type ChatStatus = "idle" | "submitted" | "streaming" | "error";
 type AnalysisState = "idle" | "loading" | "done" | "error" | "empty";
-type InsightsResult = Extract<ApiRouterOutputs["ai"]["collectionInsights"], { hasCollection: true }>;
+type InsightsResult = Extract<
+	ApiRouterOutputs["ai"]["collectionInsights"],
+	{ hasCollection: true }
+>;
 
 function errorKeyFromORPCError(error: unknown): string {
 	if (error instanceof ORPCError) {
@@ -70,9 +73,10 @@ export const useCollectionChat = () => {
 		}
 		if (result.recommendations.length > 0) {
 			text += `${t("ai.collectionInsights.result.recommendationsTitle")}:\n`;
-			text += result.recommendations.map((r) => `- ${r.pokemonName}: ${r.reason}`).join("\n") + "\n";
+			text +=
+				result.recommendations.map((r) => `- ${r.pokemonName}: ${r.reason}`).join("\n") + "\n";
 		}
-		
+
 		return {
 			id: crypto.randomUUID(),
 			role: "assistant",
@@ -93,7 +97,7 @@ export const useCollectionChat = () => {
 		errorKey.value = null;
 
 		try {
-			const payloadMessages = analysisResult.value 
+			const payloadMessages = analysisResult.value
 				? [buildAnalysisContextMessage(analysisResult.value), ...updatedMessages]
 				: updatedMessages;
 

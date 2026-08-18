@@ -15,18 +15,18 @@
 		{ icon: "i-lucide-droplet", key: "searchWater" },
 	] as const;
 
-	const { 
-		messages, 
-		status, 
-		errorKey, 
-		isConnecting, 
-		isStreaming, 
-		sendMessage, 
+	const {
+		messages,
+		status,
+		errorKey,
+		isConnecting,
+		isStreaming,
+		sendMessage,
 		retryLast,
 		analysisState,
 		analysisResult,
 		analysisErrorKey,
-		ensureInitialAnalysis
+		ensureInitialAnalysis,
 	} = useCollectionChat();
 
 	const input = ref("");
@@ -58,8 +58,6 @@
 		input.value = "";
 		void sendMessage(text);
 	};
-
-
 
 	watch(
 		[messages, status],

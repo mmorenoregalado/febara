@@ -148,13 +148,17 @@
 		},
 		"collectionInsights": {
 			"badge": "Automatic analysis",
+			"title": "Collection Insights",
+			"description": "Get an AI-powered breakdown of your collection's strengths, type distribution, and personalized recommendations.",
 			"actions": {
 				"analyze": "Analyze my collection",
 				"refresh": "Refresh analysis",
 				"retry": "Try again",
-				"analyzing": "Analyzing your collection..."
+				"analyzing": "Analyzing your collection...",
+				"scanning": "Scanning your Pokémon collection..."
 			},
 			"result": {
+				"summaryTitle": "Summary",
 				"typeDistributionTitle": "Type distribution",
 				"strengthsTitle": "Strengths",
 				"gapsTitle": "Gaps",
