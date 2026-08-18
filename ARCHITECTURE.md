@@ -19,7 +19,7 @@ el LLM.
 | UI                      | Tailwind CSS v4, Nuxt UI, Reka UI                                                   |
 | Data fetching (cliente) | TanStack Vue Query sobre un cliente oRPC (`useORPC()`)                              |
 | Validación              | Zod 4 (compartida entre input/output de oRPC y formularios)                         |
-| i18n                    | `@nuxtjs/i18n` con JSON por locale (`en`, `de`, `es`, `fr`)                         |
+| i18n                    | `@nuxtjs/i18n` con JSON por locale (`en`, `es`)                                     |
 | IA / LLM                | Vercel AI SDK (`ai`) + `@ai-sdk/openai`, `@ai-sdk/google`, `@ai-sdk/anthropic`      |
 | MCP                     | `@ai-sdk/mcp` (cliente) + `@modelcontextprotocol/server` (servidor, `packages/mcp`) |
 | Almacenamiento          | S3-compatible (MinIO en local) vía `packages/storage`                               |
@@ -279,7 +279,7 @@ Resumen de la arquitectura resultante:
 - **Notificaciones**: `createNotification` (`packages/notifications/src/create-notification.ts`) crea
   notificaciones server-side; tipos/kinds en `types.ts`, catálogo de configuración en `catalog.ts`. Al añadir
   un tipo hay que sincronizar el enum de Prisma, el catálogo y las etiquetas i18n.
-- **i18n**: JSON por locale en `packages/i18n/translations/{en,de,es,fr}/{saas,marketing}.json`, consumidos
+- **i18n**: JSON por locale en `packages/i18n/translations/{en,es}/{saas,marketing}.json`, consumidos
   vía wrappers tipados `useTranslations()` por app (nunca llamadas crudas a `@nuxtjs/i18n`). Toda cadena
   visible requiere las cuatro variantes de locale.
 

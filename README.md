@@ -2,6 +2,25 @@
 
 PokeDex Manager is a production-ready, scalable SaaS application for managing PokeDex data.
 
+For a deep dive into the stack, folder structure, data model, and the AI/MCP integration, see
+[`ARCHITECTURE.md`](./ARCHITECTURE.md).
+
+## Features
+
+- **Collection management** — search Pokémon (via PokéAPI), add/remove them from your personal
+  collection, and view details (types, stats, sprites).
+- **Pokémon card identification** — upload a photo of a physical card and an LLM (Gemini) identifies
+  the species, cross-checked against PokéAPI so the model is never the sole source of truth.
+- **Collection chat (MCP)** — ask natural-language questions about your collection through a chat
+  backed by MCP tools (`get_collection`, `search_pokemon`, `get_pokemon_stats`,
+  `identify_pokemon_card`). See the [MCP](#mcp) section below.
+- **Organizations & multi-tenancy** — create/join organizations, invite members by email, and manage
+  roles (`owner` / `admin` / `member`).
+- **Auth** — email/password and OAuth via Better Auth, with passkeys (WebAuthn) and 2FA support.
+- **Admin panel** — manage users and organizations (requires `admin.access`).
+- **Notifications** — in-app notifications with per-type/target preferences (in-app / email).
+- **i18n** — English and Spanish.
+
 ## Getting Started
 
 ### 1. Environment
@@ -22,6 +41,17 @@ S3_SECRET_ACCESS_KEY="minioadmin"
 S3_ENDPOINT="http://localhost:9000"
 S3_REGION="us-east-1"
 ```
+
+The rest of `.env.local.example` is grouped by feature — only fill in what you plan to exercise:
+
+| Variable(s)                                            | Needed for                                                      |
+| -------------------------------------------------------- | ----------------------------------------------------------------- |
+| `DATABASE_URL`                                            | Always — PostgreSQL connection string                              |
+| `NUXT_PUBLIC_SAAS_URL`, `NUXT_PUBLIC_SITE_URL`, `NUXT_PUBLIC_MARKETING_URL` | Always — canonical app URLs (defaults work for local dev)          |
+| `MAIL_FROM` + (`RESEND_API_KEY` or `MAIL_HOST`/`MAIL_PORT`/`MAIL_USER`/`MAIL_PASS`) | Sending email (auth verification, invitations). `console` provider is used as a dev fallback if unset |
+| `S3_ACCESS_KEY_ID`, `S3_SECRET_ACCESS_KEY`, `S3_ENDPOINT`, `S3_REGION`, `NUXT_PUBLIC_AVATARS_BUCKET_NAME` | Uploading avatars / organization logos (MinIO locally)             |
+| `OPENAI_API_KEY`                                          | The `/ai/stream` chat endpoint                                     |
+| `GEMINI_API_KEY` (+ optional `GEMINI_MODEL`)              | Pokémon card identification and the MCP-backed collection chat     |
 
 ### 2. Start local services
 
@@ -59,7 +89,36 @@ pnpm dev
 | --------- | --------------------- |
 | SaaS      | http://localhost:3000 |
 | Marketing | http://localhost:3001 |
-| Docs      | http://localhost:3002 |
+
+### Basic usage
+
+1. Open http://localhost:3000 and sign up (or sign in). If you haven't configured a real mail
+   provider (`RESEND_API_KEY` or `MAIL_HOST`/`MAIL_PORT`/`MAIL_USER`/`MAIL_PASS`), the app falls
+   back to the `console` mail provider — check the terminal running `pnpm dev` for the verification
+   email (with the confirmation link) instead of your inbox, and click that link to confirm the
+   account before logging in.
+2. On first login you'll be guided through onboarding, which creates your organization.
+3. Go to **Collection** → search for a Pokémon and add it, or use **Identify a card** to upload a
+   photo and let the LLM identify it for you.
+4. From the collection page, open **Ask about my collection** to chat with an LLM that can query
+   your collection and PokéAPI on your behalf (see [MCP](#mcp) below for what powers this).
+5. From **Settings → Organization**, invite teammates by email and manage their roles.
+6. If your user has `admin.access`, the **Admin** section lets you manage all users and
+   organizations across the app.
+
+### Scripts
+
+| Command            | Purpose                                       |
+| ------------------- | ---------------------------------------------- |
+| `pnpm dev`           | Start all app dev servers                       |
+| `pnpm build`         | Build the workspace                             |
+| `pnpm lint`          | Generate the database client, then run Oxlint   |
+| `pnpm format`        | Format the codebase with Oxfmt                  |
+| `pnpm type-check`    | Run workspace type checks                       |
+| `pnpm test`          | Run Vitest across the workspace                 |
+
+Playwright e2e tests live per app and need a running app + database:
+`pnpm --filter saas e2e:ci` / `pnpm --filter marketing e2e:ci`.
 
 ## MCP
 
