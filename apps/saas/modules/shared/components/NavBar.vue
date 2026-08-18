@@ -110,13 +110,7 @@
 				icon: "i-lucide-scan-line",
 				isActive: route.path.startsWith("/pokemon/identify"),
 			},
-			{
-				label: t("app.menu.aiChatbot"),
-				href: "/chatbot",
-				icon: "i-lucide-bot-message-square",
-				isActive: route.path.startsWith("/chatbot"),
-			},
-		];
+			];
 
 		if (activeOrganization.value && canManageOrganization.value) {
 			const organizationSettingsBasePath = `${basePath.value}/settings`;
