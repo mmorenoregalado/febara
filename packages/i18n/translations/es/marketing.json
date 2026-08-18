@@ -176,25 +176,20 @@
 	"home": {
 		"hero": {
 			"new": "Nuevo",
-			"featureBadge": "Auth, seguridad y roles multi-laboratorio — listo para lanzar tu Pokédex",
-			"title": "Construye tu plataforma Pokédex sin reinventar los cimientos",
-			"subtitle": "Un starter de Nuxt orientado a producción para plataformas de gestión de Pokédex — autenticación, laboratorios de investigación, seguridad y los patrones de UI que necesitas para lanzar más rápido.",
-			"getStarted": "Empezar a construir",
-			"documentation": "Leer la documentación",
-			"imageAlt": "Vista previa del panel de la Pokédex",
+			"featureBadge": "Identifica cartas Pokémon con IA en segundos",
+			"title": "Tu colección Pokémon, identificada con solo una foto",
+			"subtitle": "Sube la foto de una carta y la IA identifica el Pokémon al instante. Pregúntale a tu colección lo que quieras, y recibe recomendaciones personalizadas de qué agregar después.",
+			"getStarted": "Crear mi colección",
+			"documentation": "Ver cómo funciona",
+			"imageAlt": "Vista previa de la identificación de una carta Pokémon con IA",
 			"preview": {
-				"organization": "Oak Labs",
-				"start": "Inicio",
-				"chatbot": "Asistente Pokédex",
-				"organizationSettings": "Ajustes del laboratorio",
-				"accountSettings": "Ajustes de cuenta",
-				"welcome": "Bienvenido a la página de inicio de este laboratorio.",
-				"newClients": "Nuevos entrenadores",
-				"revenue": "Ingresos",
-				"churn": "Churn",
-				"placeholder": "Coloca tu contenido aquí...",
-				"userName": "Maya Chen",
-				"userEmail": "maya{'@'}oaklabs.com"
+				"uploadHint": "Foto de la carta subida",
+				"pokemonId": "#0006",
+				"pokemonName": "Charizard",
+				"type1": "Fuego",
+				"type2": "Volador",
+				"confidenceLabel": "Confianza",
+				"confidenceHigh": "Alta"
 			}
 		},
 		"features": {

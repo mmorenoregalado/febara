@@ -176,25 +176,20 @@
 	"home": {
 		"hero": {
 			"new": "New",
-			"featureBadge": "Auth, security, and multi-lab roles — ready to ship your Pokédex platform",
-			"title": "Build your Pokédex platform without rebuilding the foundations",
-			"subtitle": "A production-minded Nuxt starter for Pokédex management platforms — authentication, research labs, security, and the UI patterns you need to launch faster.",
-			"getStarted": "Start building",
-			"documentation": "Read the docs",
-			"imageAlt": "Pokédex dashboard preview",
+			"featureBadge": "Identify Pokémon cards with AI in seconds",
+			"title": "Your Pokémon collection, identified with a single photo",
+			"subtitle": "Upload a photo of a card and the AI identifies the Pokémon instantly. Ask your collection anything you want, and get personalized recommendations on what to add next.",
+			"getStarted": "Build my collection",
+			"documentation": "See how it works",
+			"imageAlt": "Preview of an AI Pokémon card identification",
 			"preview": {
-				"organization": "Oak Labs",
-				"start": "Start",
-				"chatbot": "Pokédex Assistant",
-				"organizationSettings": "Lab settings",
-				"accountSettings": "Account settings",
-				"welcome": "Welcome to the start page of this lab!",
-				"newClients": "New trainers",
-				"revenue": "Revenue",
-				"churn": "Churn",
-				"placeholder": "Place your content here...",
-				"userName": "Maya Chen",
-				"userEmail": "maya{'@'}oaklabs.com"
+				"uploadHint": "Uploaded card photo",
+				"pokemonId": "#0006",
+				"pokemonName": "Charizard",
+				"type1": "Fire",
+				"type2": "Flying",
+				"confidenceLabel": "Confidence",
+				"confidenceHigh": "High"
 			}
 		},
 		"features": {
