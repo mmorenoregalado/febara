@@ -240,7 +240,6 @@ dependencies to the workspace package that imports them.
 ## Change management
 
 - Use conventional commits such as `feat:`, `fix:`, `docs:`, or `refactor:`.
-- Update `CHANGELOG.md` for consumer-impacting changes.
 - Update `AGENTS.md` when conventions, aliases, scripts, or app boundaries change.
 - Keep changes generic and consistent across apps/packages.
 
@@ -253,4 +252,4 @@ dependencies to the workspace package that imports them.
 - [ ] No `console.log` statements were added
 - [ ] No unjustified `any` types were added
 - [ ] User-facing strings have translations
-- [ ] Relevant docs and `CHANGELOG.md` are updated
+- [ ] Relevant docs are updated

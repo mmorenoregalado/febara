@@ -7,6 +7,11 @@ type IdentificationResult = ApiRouterOutputs["ai"]["identifyPokemonCard"];
 const ACCEPTED_MIME_TYPES = ["image/jpeg", "image/png", "image/webp"] as const;
 const MAX_IMAGE_BYTES = 10 * 1024 * 1024;
 
+const NON_RETRYABLE_ERROR_KEYS = [
+	"pokemon.identify.errors.invalidImage",
+	"pokemon.identify.errors.imageTooLarge",
+] as const;
+
 function fileToBase64(file: File): Promise<string> {
 	return new Promise((resolve, reject) => {
 		const reader = new FileReader();
@@ -108,6 +113,13 @@ export const usePokemonCardIdentifier = () => {
 		result: computed(() => result.value),
 		error: computed(() => errorKey.value),
 		isIdentifying: computed(() => state.value === "identifying"),
+		canRetryWithSameImage: computed(
+			() =>
+				errorKey.value !== null &&
+				!NON_RETRYABLE_ERROR_KEYS.includes(
+					errorKey.value as (typeof NON_RETRYABLE_ERROR_KEYS)[number],
+				),
+		),
 		selectImage,
 		identify,
 		reset,

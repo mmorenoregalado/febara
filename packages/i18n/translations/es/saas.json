@@ -570,11 +570,21 @@
 			"upload": {
 				"cta": "Seleccionar una imagen",
 				"dragHint": "Arrastra una imagen aquí",
-				"hint": "JPG, PNG o WEBP, hasta 10MB"
+				"hint": "JPG, PNG o WEBP, hasta 10MB",
+				"change": "Cambiar imagen",
+				"remove": "Quitar",
+				"takePhoto": "Tomar una foto",
+				"tips": {
+					"title": "Consejos para un mejor resultado",
+					"lighting": "Usa buena iluminación uniforme y evita los reflejos",
+					"flatSurface": "Coloca la carta sobre una superficie plana sin reflejos",
+					"fullCard": "Encuadra la carta completa dentro de la imagen"
+				}
 			},
 			"actions": {
 				"identify": "Identificar Pokémon",
 				"retry": "Intentar con otra imagen",
+				"retrySameImage": "Intentar de nuevo",
 				"identifying": "Analizando carta...",
 				"viewDetail": "Ver detalle del Pokémon"
 			},

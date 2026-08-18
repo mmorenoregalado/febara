@@ -1,14 +1,30 @@
 <script lang="ts" setup>
 	const { t } = useTranslations();
 
-	const { state, previewUrl, result, error, isIdentifying, selectImage, identify, reset } =
-		usePokemonCardIdentifier();
+	const uploadRef = useTemplateRef("uploadRef");
+
+	const {
+		state,
+		previewUrl,
+		result,
+		error,
+		isIdentifying,
+		canRetryWithSameImage,
+		selectImage,
+		identify,
+		reset,
+	} = usePokemonCardIdentifier();
 </script>
 
 <template>
 	<div class="gap-4 flex flex-col">
 		<template v-if="state === 'idle' || state === 'image-selected'">
-			<PokemonCardUpload :disabled="isIdentifying" @select="selectImage" />
+			<PokemonCardUpload
+				ref="uploadRef"
+				v-show="state === 'idle'"
+				:disabled="isIdentifying"
+				@select="selectImage"
+			/>
 
 			<div v-if="state === 'image-selected' && previewUrl" class="gap-3 flex flex-col items-center">
 				<img
@@ -16,11 +32,20 @@
 					alt=""
 					class="max-h-80 rounded-md border-default max-w-full border object-contain"
 				/>
-				<div class="gap-2 flex">
+				<div class="gap-2 flex flex-wrap justify-center">
 					<UButton
+						icon="i-lucide-image"
 						variant="soft"
 						color="neutral"
-						:label="t('pokemon.identify.upload.cta')"
+						:label="t('pokemon.identify.upload.change')"
+						:disabled="isIdentifying"
+						@click="uploadRef?.openFileDialog()"
+					/>
+					<UButton
+						icon="i-lucide-x"
+						variant="ghost"
+						color="neutral"
+						:label="t('pokemon.identify.upload.remove')"
 						:disabled="isIdentifying"
 						@click="reset"
 					/>
@@ -44,7 +69,9 @@
 			v-else-if="state === 'identified' || state === 'error'"
 			:result="result"
 			:error-key="error"
-			@retry="reset"
+			:can-retry-with-same-image="canRetryWithSameImage"
+			@retry-same-image="identify"
+			@choose-new-image="reset"
 		/>
 	</div>
 </template>

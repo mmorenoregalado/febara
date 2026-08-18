@@ -6,10 +6,12 @@
 	defineProps<{
 		result: IdentificationResult | null;
 		errorKey: string | null;
+		canRetryWithSameImage: boolean;
 	}>();
 
 	defineEmits<{
-		retry: [];
+		"retry-same-image": [];
+		"choose-new-image": [];
 	}>();
 
 	const { t } = useTranslations();
@@ -24,14 +26,22 @@
 <template>
 	<div class="gap-4 flex flex-col">
 		<template v-if="errorKey">
-			<UAlert color="error" :description="t(errorKey)" />
-			<UButton
-				icon="i-lucide-rotate-ccw"
-				variant="soft"
-				class="self-start"
-				:label="t('pokemon.identify.actions.retry')"
-				@click="$emit('retry')"
-			/>
+			<UAlert color="error" aria-live="polite" :description="t(errorKey)" />
+			<div class="gap-2 flex flex-wrap">
+				<UButton
+					v-if="canRetryWithSameImage"
+					icon="i-lucide-rotate-ccw"
+					:label="t('pokemon.identify.actions.retrySameImage')"
+					@click="$emit('retry-same-image')"
+				/>
+				<UButton
+					icon="i-lucide-image"
+					:variant="canRetryWithSameImage ? 'ghost' : 'soft'"
+					:color="canRetryWithSameImage ? 'neutral' : 'primary'"
+					:label="t('pokemon.identify.actions.retry')"
+					@click="$emit('choose-new-image')"
+				/>
+			</div>
 		</template>
 
 		<template v-else-if="result && !result.identified">
@@ -42,7 +52,7 @@
 				<UButton
 					icon="i-lucide-rotate-ccw"
 					:label="t('pokemon.identify.actions.retry')"
-					@click="$emit('retry')"
+					@click="$emit('choose-new-image')"
 				/>
 			</div>
 		</template>
@@ -111,7 +121,7 @@
 					variant="ghost"
 					color="neutral"
 					:label="t('pokemon.identify.actions.retry')"
-					@click="$emit('retry')"
+					@click="$emit('choose-new-image')"
 				/>
 			</div>
 		</template>
