@@ -64,6 +64,9 @@ export const collectionChat = protectedProcedure
 					url: `${config.saasUrl}/api/mcp`,
 					headers: cookie ? { cookie } : {},
 				},
+				// /api/mcp is an in-process loopback call, so a hung/unreachable server should fail
+				// fast into the catch below instead of hanging the whole request indefinitely.
+				initializationOptions: { timeout: 5000 },
 			});
 		} catch (error) {
 			logger.error("Failed to connect to the collection MCP server", {
@@ -82,7 +85,10 @@ export const collectionChat = protectedProcedure
 			onFinish: async () => {
 				await mcpClient.close();
 			},
-			onError: async () => {
+			onError: async ({ error }) => {
+				logger.error("Error while streaming the collection chat response", {
+					message: error instanceof Error ? error.message : String(error),
+				});
 				await mcpClient.close();
 			},
 		});

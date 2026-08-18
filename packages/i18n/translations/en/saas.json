@@ -125,6 +125,28 @@
 		},
 		"description": "Manage your application."
 	},
+	"ai": {
+		"collectionChat": {
+			"triggerLabel": "Ask about my collection",
+			"triggerAriaLabel": "Open the collection assistant",
+			"title": "Collection assistant",
+			"welcome": "Ask me anything about your Pokémon collection.",
+			"suggestions": {
+				"count": "How many Pokémon do I have in my collection?",
+				"missingType": "What types of Pokémon am I missing?",
+				"searchWater": "Search for water-type Pokémon"
+			},
+			"inputPlaceholder": "Ask about your collection...",
+			"sendAriaLabel": "Send message",
+			"connecting": "Connecting to the assistant...",
+			"retry": "Retry",
+			"errors": {
+				"sessionExpired": "Your session has expired. Please sign in again.",
+				"unavailable": "The assistant is temporarily unavailable. Please try again in a moment.",
+				"generic": "Something went wrong. Please try again."
+			}
+		}
+	},
 	"app": {
 		"menu": {
 			"accountSettings": "Account settings",
@@ -281,7 +303,9 @@
 		},
 		"card": {
 			"viewDetail": "View detail",
-			"remove": "Remove"
+			"remove": "Remove",
+			"add": "Add to my collection",
+			"inCollection": "In my collection"
 		},
 		"confirmRemove": {
 			"title": "Remove from collection",

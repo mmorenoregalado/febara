@@ -125,6 +125,28 @@
 		},
 		"description": "Gestiona tu aplicación."
 	},
+	"ai": {
+		"collectionChat": {
+			"triggerLabel": "Preguntar sobre mi colección",
+			"triggerAriaLabel": "Abrir el asistente de colección",
+			"title": "Asistente de colección",
+			"welcome": "Preguntame lo que quieras sobre tu colección de Pokémon.",
+			"suggestions": {
+				"count": "¿Cuántos Pokémon tengo en mi colección?",
+				"missingType": "¿Qué tipos de Pokémon me faltan?",
+				"searchWater": "Buscá Pokémon de tipo agua"
+			},
+			"inputPlaceholder": "Preguntá sobre tu colección...",
+			"sendAriaLabel": "Enviar mensaje",
+			"connecting": "Conectando con el asistente...",
+			"retry": "Reintentar",
+			"errors": {
+				"sessionExpired": "Tu sesión expiró. Iniciá sesión de nuevo.",
+				"unavailable": "El asistente no está disponible en este momento. Inténtalo de nuevo en un momento.",
+				"generic": "Algo salió mal. Inténtalo de nuevo."
+			}
+		}
+	},
 	"app": {
 		"menu": {
 			"accountSettings": "Configuración de cuenta",
@@ -281,7 +303,9 @@
 		},
 		"card": {
 			"viewDetail": "Ver detalle",
-			"remove": "Eliminar"
+			"remove": "Eliminar",
+			"add": "Agregar a mi colección",
+			"inCollection": "En mi colección"
 		},
 		"confirmRemove": {
 			"title": "Eliminar de la colección",

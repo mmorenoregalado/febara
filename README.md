@@ -76,10 +76,11 @@ in-app text chat can't trigger it today (it only accepts text messages), but any
 already has the image (Inspector with a pasted/uploaded base64 string, Claude Desktop, a script)
 can call it directly.
 
-There is no dedicated chat UI page yet — the LLM side is wired at the API level
-(`POST /ai/collection-chat`, protected, streamed) but not yet exposed through a page like the
-existing `/chatbot`. The way to exercise the feature today is the MCP server itself, either
-through MCP Inspector or by calling the tools' underlying REST endpoints directly.
+The chat itself is exposed in the SaaS app as a drawer on the `/collection` page (the "Ask about
+my collection" button in the page header) — it talks to `POST /ai/collection-chat`, which streams
+an LLM response backed by the same MCP tools. `identify_pokemon_card` is the one tool the in-app
+chat can't trigger (see above), so to exercise it, or to inspect the raw MCP protocol/tool schemas
+directly, use MCP Inspector or the tools' underlying REST endpoints as described below.
 
 ### Get a session cookie (needed for both options below)
 
@@ -142,3 +143,13 @@ curl -X POST http://localhost:3000/api/ai/identify-pokemon-card \
   -H "Content-Type: application/json" \
   -d "{\"imageBase64\": \"$(base64 -i card.jpg)\", \"mimeType\": \"image/jpeg\"}"
 ```
+
+### Security note
+
+Forwarding the caller's session cookie directly to `/api/mcp` (and from each MCP tool to its
+underlying REST endpoint) is a simplified auth mechanism appropriate for this technical test,
+where the MCP server is mounted in-process in the same app as a trusted internal call. In a
+production system with a separately-deployed MCP server, this would instead use a short-lived,
+narrowly-scoped service token (e.g. minted per-request from the user's session and passed as a
+bearer token) or a proper OAuth service-to-service exchange, rather than forwarding the user's
+actual session cookie across a process/trust boundary.
