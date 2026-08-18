@@ -49,7 +49,7 @@
 	};
 
 	watch(
-		[() => messages.value.length, status],
+		[messages, status],
 		() => {
 			if (messagesContainerRef.value) {
 				messagesContainerRef.value.scrollTop = messagesContainerRef.value.scrollHeight;
@@ -65,7 +65,10 @@
 		direction="right"
 		:title="t('ai.collectionChat.title')"
 		:close="true"
-		:ui="{ container: 'sm:w-[420px] md:w-[480px] w-full max-w-[calc(100vw-2rem)] overflow-hidden' }"
+		:ui="{
+			container: 'sm:w-[420px] md:w-[480px] w-full max-w-[calc(100vw-2rem)] overflow-x-hidden',
+			body: 'min-h-0',
+		}"
 	>
 		<template #body>
 			<div ref="messagesContainerRef" class="gap-4 pr-1 flex h-full flex-col overflow-y-auto">
