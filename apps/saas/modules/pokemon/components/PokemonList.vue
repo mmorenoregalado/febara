@@ -98,6 +98,9 @@
 
 	const pokemon = computed(() => data.value?.pokemon ?? []);
 	const skeletonIndices = computed(() => Array.from({ length: itemsPerPage.value }, (_, i) => i));
+
+	const pokemonIds = computed(() => pokemon.value.map((p) => p.id));
+	const { inCollectionIds, isLoading: isCollectionLoading } = useCollectionMembership(pokemonIds);
 </script>
 
 <template>
@@ -129,7 +132,13 @@
 		</div>
 
 		<div v-else class="gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 grid grid-cols-2">
-			<PokemonCard v-for="p in pokemon" :key="p.id" :pokemon="p" />
+			<PokemonCard
+				v-for="p in pokemon"
+				:key="p.id"
+				:pokemon="p"
+				:in-collection="inCollectionIds.has(p.id)"
+				:in-collection-loading="isCollectionLoading"
+			/>
 		</div>
 
 		<div class="flex justify-center">

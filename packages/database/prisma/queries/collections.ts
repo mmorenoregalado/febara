@@ -31,3 +31,14 @@ export async function isPokemonInCollection(userId: string, pokemonId: number) {
 	});
 	return Boolean(row);
 }
+
+export async function getCollectedPokemonIds(userId: string, pokemonIds: number[]) {
+	if (pokemonIds.length === 0) {
+		return [];
+	}
+	const rows = await db.collectionEntry.findMany({
+		where: { userId, pokemonId: { in: pokemonIds } },
+		select: { pokemonId: true },
+	});
+	return rows.map((row) => row.pokemonId);
+}

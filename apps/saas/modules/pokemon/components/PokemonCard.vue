@@ -3,17 +3,20 @@
 
 	type PokemonSummary = ApiRouterOutputs["pokemon"]["list"]["pokemon"][number];
 
-	const props = defineProps<{
-		pokemon: PokemonSummary;
-	}>();
+	const props = withDefaults(
+		defineProps<{
+			pokemon: PokemonSummary;
+			inCollection: boolean;
+			inCollectionLoading?: boolean;
+		}>(),
+		{ inCollectionLoading: false },
+	);
 
 	const { t } = useTranslations();
 	const toast = useToast();
 	const { user } = useSession();
 
-	const { inCollection, isLoading, add, remove, isAdding, isRemoving } = useCollectionItem(
-		() => props.pokemon.id,
-	);
+	const { add, remove, isAdding, isRemoving } = useCollectionMutations(() => props.pokemon.id);
 
 	const onAdd = async () => {
 		try {
@@ -52,7 +55,7 @@
 			</div>
 
 			<UButton
-				v-if="user && !isLoading"
+				v-if="user && !inCollectionLoading"
 				size="xs"
 				:color="inCollection ? 'success' : 'primary'"
 				:variant="inCollection ? 'soft' : 'solid'"
