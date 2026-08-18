@@ -44,14 +44,13 @@ S3_REGION="us-east-1"
 
 The rest of `.env.local.example` is grouped by feature — only fill in what you plan to exercise:
 
-| Variable(s)                                            | Needed for                                                      |
-| -------------------------------------------------------- | ----------------------------------------------------------------- |
-| `DATABASE_URL`                                            | Always — PostgreSQL connection string                              |
-| `NUXT_PUBLIC_SAAS_URL`, `NUXT_PUBLIC_SITE_URL`, `NUXT_PUBLIC_MARKETING_URL` | Always — canonical app URLs (defaults work for local dev)          |
-| `MAIL_FROM` + (`RESEND_API_KEY` or `MAIL_HOST`/`MAIL_PORT`/`MAIL_USER`/`MAIL_PASS`) | Sending email (auth verification, invitations). `console` provider is used as a dev fallback if unset |
-| `S3_ACCESS_KEY_ID`, `S3_SECRET_ACCESS_KEY`, `S3_ENDPOINT`, `S3_REGION`, `NUXT_PUBLIC_AVATARS_BUCKET_NAME` | Uploading avatars / organization logos (MinIO locally)             |
-| `OPENAI_API_KEY`                                          | The `/ai/stream` chat endpoint                                     |
-| `GEMINI_API_KEY` (+ optional `GEMINI_MODEL`)              | Pokémon card identification and the MCP-backed collection chat     |
+| Variable(s)                                                                                               | Needed for                                                                                            |
+| --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `DATABASE_URL`                                                                                            | Always — PostgreSQL connection string                                                                 |
+| `NUXT_PUBLIC_SAAS_URL`, `NUXT_PUBLIC_SITE_URL`, `NUXT_PUBLIC_MARKETING_URL`                               | Always — canonical app URLs (defaults work for local dev)                                             |
+| `MAIL_FROM` + (`RESEND_API_KEY` or `MAIL_HOST`/`MAIL_PORT`/`MAIL_USER`/`MAIL_PASS`)                       | Sending email (auth verification, invitations). `console` provider is used as a dev fallback if unset |
+| `S3_ACCESS_KEY_ID`, `S3_SECRET_ACCESS_KEY`, `S3_ENDPOINT`, `S3_REGION`, `NUXT_PUBLIC_AVATARS_BUCKET_NAME` | Uploading avatars / organization logos (MinIO locally)                                                |
+| `GEMINI_API_KEY` (+ optional `GEMINI_MODEL`)                                                              | Pokémon card identification and the MCP-backed collection chat                                        |
 
 ### 2. Start local services
 
@@ -108,14 +107,14 @@ pnpm dev
 
 ### Scripts
 
-| Command            | Purpose                                       |
-| ------------------- | ---------------------------------------------- |
-| `pnpm dev`           | Start all app dev servers                       |
-| `pnpm build`         | Build the workspace                             |
-| `pnpm lint`          | Generate the database client, then run Oxlint   |
-| `pnpm format`        | Format the codebase with Oxfmt                  |
-| `pnpm type-check`    | Run workspace type checks                       |
-| `pnpm test`          | Run Vitest across the workspace                 |
+| Command           | Purpose                                       |
+| ----------------- | --------------------------------------------- |
+| `pnpm dev`        | Start all app dev servers                     |
+| `pnpm build`      | Build the workspace                           |
+| `pnpm lint`       | Generate the database client, then run Oxlint |
+| `pnpm format`     | Format the codebase with Oxfmt                |
+| `pnpm type-check` | Run workspace type checks                     |
+| `pnpm test`       | Run Vitest across the workspace               |
 
 Playwright e2e tests live per app and need a running app + database:
 `pnpm --filter saas e2e:ci` / `pnpm --filter marketing e2e:ci`.
