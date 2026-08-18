@@ -145,6 +145,27 @@
 				"unavailable": "The assistant is temporarily unavailable. Please try again in a moment.",
 				"generic": "Something went wrong. Please try again."
 			}
+		},
+		"collectionInsights": {
+			"actions": {
+				"analyze": "Analyze my collection",
+				"retry": "Try again",
+				"analyzing": "Analyzing your collection..."
+			},
+			"empty": {
+				"title": "Add some Pokémon first",
+				"description": "Your collection is empty. Add a few Pokémon to get insights and recommendations."
+			},
+			"result": {
+				"typeDistributionTitle": "Type distribution",
+				"strengthsTitle": "Strengths",
+				"gapsTitle": "Gaps",
+				"recommendationsTitle": "Recommendations"
+			},
+			"errors": {
+				"unavailable": "The insights service is temporarily unavailable. Please try again in a moment.",
+				"generic": "Something went wrong while analyzing your collection. Please try again."
+			}
 		}
 	},
 	"app": {

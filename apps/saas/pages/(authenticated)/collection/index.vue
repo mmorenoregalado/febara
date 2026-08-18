@@ -33,6 +33,7 @@
 		</UPageHeader>
 
 		<CollectionList />
+		<CollectionInsightsPanel />
 		<CollectionChatDrawer v-model:open="chatOpen" />
 	</div>
 </template>

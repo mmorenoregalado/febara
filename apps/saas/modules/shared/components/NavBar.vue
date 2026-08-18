@@ -110,7 +110,7 @@
 				icon: "i-lucide-scan-line",
 				isActive: route.path.startsWith("/pokemon/identify"),
 			},
-			];
+		];
 
 		if (activeOrganization.value && canManageOrganization.value) {
 			const organizationSettingsBasePath = `${basePath.value}/settings`;

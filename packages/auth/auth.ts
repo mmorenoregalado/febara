@@ -23,8 +23,8 @@ import { parseCookie as parseCookies } from "cookie";
 import { config } from "./config";
 import { invitationOnlyPlugin } from "./plugins/invitation-only";
 
-const getLocaleFromRequest = (request?: Request): Locale => {
-	const cookies = parseCookies(request?.headers.get("cookie") ?? "");
+export const getLocaleFromHeaders = (headers?: Headers): Locale => {
+	const cookies = parseCookies(headers?.get("cookie") ?? "");
 	return (cookies[i18nConfig.localeCookieName] ?? i18nConfig.defaultLocale) as Locale;
 };
 
@@ -229,7 +229,7 @@ export const auth = betterAuth({
 		changeEmail: {
 			enabled: true,
 			sendChangeEmailConfirmation: async ({ user: { email, name }, url }, request) => {
-				const locale = getLocaleFromRequest(request);
+				const locale = getLocaleFromHeaders(request?.headers);
 				await sendEmail({
 					to: email,
 					templateId: "emailVerification",
@@ -249,7 +249,7 @@ export const auth = betterAuth({
 		autoSignIn: !config.enableSignup,
 		requireEmailVerification: config.enableSignup,
 		sendResetPassword: async ({ user, url }, request) => {
-			const locale = getLocaleFromRequest(request);
+			const locale = getLocaleFromHeaders(request?.headers);
 			await sendEmail({
 				to: user.email,
 				templateId: "forgotPassword",
@@ -266,7 +266,7 @@ export const auth = betterAuth({
 		sendOnSignUp: config.enableSignup,
 		autoSignInAfterVerification: true,
 		sendVerificationEmail: async ({ user: { email, name }, url }, request) => {
-			const locale = getLocaleFromRequest(request);
+			const locale = getLocaleFromHeaders(request?.headers);
 			await sendEmail({
 				to: email,
 				templateId: "emailVerification",
@@ -286,7 +286,7 @@ export const auth = betterAuth({
 			sendMagicLink: async ({ email, url }, ctx) => {
 				const request = ctx?.request as Request;
 
-				const locale = getLocaleFromRequest(request);
+				const locale = getLocaleFromHeaders(request?.headers);
 				await sendEmail({
 					to: email,
 					templateId: "magicLink",
@@ -299,7 +299,7 @@ export const auth = betterAuth({
 		}),
 		organization({
 			sendInvitationEmail: async ({ email, id, organization }, request) => {
-				const locale = getLocaleFromRequest(request);
+				const locale = getLocaleFromHeaders(request?.headers);
 				const existingUser = await getUserByEmail(email);
 
 				const url = new URL(

@@ -145,6 +145,27 @@
 				"unavailable": "El asistente no está disponible en este momento. Inténtalo de nuevo en un momento.",
 				"generic": "Algo salió mal. Inténtalo de nuevo."
 			}
+		},
+		"collectionInsights": {
+			"actions": {
+				"analyze": "Analizar mi colección",
+				"retry": "Reintentar",
+				"analyzing": "Analizando tu colección..."
+			},
+			"empty": {
+				"title": "Agregá algunos Pokémon primero",
+				"description": "Tu colección está vacía. Agregá algunos Pokémon para obtener análisis y recomendaciones."
+			},
+			"result": {
+				"typeDistributionTitle": "Distribución por tipo",
+				"strengthsTitle": "Fortalezas",
+				"gapsTitle": "Huecos",
+				"recommendationsTitle": "Recomendaciones"
+			},
+			"errors": {
+				"unavailable": "El servicio de análisis no está disponible en este momento. Inténtalo de nuevo en un momento.",
+				"generic": "Algo salió mal al analizar tu colección. Inténtalo de nuevo."
+			}
 		}
 	},
 	"app": {

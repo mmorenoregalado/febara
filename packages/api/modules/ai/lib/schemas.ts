@@ -21,3 +21,21 @@ export const IdentifyCardOutputSchema = z.discriminatedUnion("identified", [
 ]);
 
 export type IdentifyCardOutput = z.infer<typeof IdentifyCardOutputSchema>;
+
+export const CollectionInsightsInputSchema = z.object({});
+
+export const CollectionInsightsOutputSchema = z.discriminatedUnion("hasCollection", [
+	z.object({
+		hasCollection: z.literal(false),
+	}),
+	z.object({
+		hasCollection: z.literal(true),
+		summary: z.string(),
+		typeDistribution: z.array(z.object({ type: z.string(), count: z.number() })),
+		strengths: z.array(z.string()),
+		gaps: z.array(z.object({ type: z.string(), reason: z.string() })),
+		recommendations: z.array(z.object({ pokemonName: z.string(), reason: z.string() })),
+	}),
+]);
+
+export type CollectionInsightsOutput = z.infer<typeof CollectionInsightsOutputSchema>;
