@@ -30,20 +30,40 @@
 </script>
 
 <template>
-	<div class="rounded-md border-default bg-default gap-3 p-4 flex flex-col items-center border">
-		<img
-			v-if="pokemon.imageUrl"
-			:src="pokemon.imageUrl"
-			:alt="pokemon.name"
-			loading="lazy"
-			class="h-24 w-24 object-contain"
+	<NuxtLink
+		:to="`/pokemon/${pokemon.name}`"
+		class="group rounded-xl border-default bg-default p-5 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg gap-3 relative flex flex-col items-center border transition-all"
+	>
+		<span
+			class="left-3 top-3 bg-default/80 backdrop-blur px-2 py-0.5 text-xs font-mono text-muted absolute z-10 rounded-full"
+		>
+			#{{ String(pokemon.id).padStart(4, "0") }}
+		</span>
+
+		<UButton
+			variant="soft"
+			color="error"
+			size="xs"
+			square
+			icon="i-lucide-trash-2"
+			:loading="pending"
+			:aria-label="t('collection.card.remove')"
+			class="right-3 top-3 sm:opacity-0 sm:group-hover:opacity-100 absolute z-10 rounded-full opacity-100 transition-opacity transition-transform hover:scale-105 focus-visible:opacity-100"
+			@click.stop.prevent="openConfirmation"
 		/>
-		<div v-else class="h-24 w-24 flex items-center justify-center">
-			<UIcon name="i-lucide-image-off" class="text-dimmed h-8 w-8" />
+
+		<div class="bg-muted/50 size-28 rounded-2xl p-3 flex items-center justify-center">
+			<img
+				v-if="pokemon.imageUrl"
+				:src="pokemon.imageUrl"
+				:alt="pokemon.name"
+				loading="lazy"
+				class="size-full object-contain transition-transform duration-500 group-hover:scale-110"
+			/>
+			<UIcon v-else name="i-lucide-image-off" class="text-dimmed h-8 w-8" />
 		</div>
 
 		<span class="font-medium capitalize">{{ pokemon.name }}</span>
-		<span class="text-muted text-sm">#{{ String(pokemon.id).padStart(4, "0") }}</span>
 
 		<div class="gap-1 flex flex-wrap justify-center">
 			<UBadge
@@ -56,26 +76,6 @@
 			>
 				{{ type }}
 			</UBadge>
-		</div>
-
-		<div class="gap-2 mt-2 flex w-full">
-			<UButton
-				:to="`/pokemon/${pokemon.name}`"
-				variant="soft"
-				color="neutral"
-				size="sm"
-				class="flex-1 justify-center"
-				:label="t('collection.card.viewDetail')"
-			/>
-			<UButton
-				variant="soft"
-				color="error"
-				size="sm"
-				icon="i-lucide-trash-2"
-				:loading="pending"
-				:aria-label="t('collection.card.remove')"
-				@click="openConfirmation"
-			/>
 		</div>
 
 		<UModal
@@ -97,5 +97,5 @@
 				/>
 			</template>
 		</UModal>
-	</div>
+	</NuxtLink>
 </template>

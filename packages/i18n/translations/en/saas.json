@@ -321,7 +321,6 @@
 			"cta": "Explore Pokémon"
 		},
 		"card": {
-			"viewDetail": "View detail",
 			"remove": "Remove",
 			"add": "Add to my collection",
 			"inCollection": "In my collection"

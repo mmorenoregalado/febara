@@ -40,33 +40,37 @@
 <template>
 	<NuxtLink
 		:to="`/pokemon/${pokemon.name}`"
-		class="rounded-md border-default bg-default gap-2 p-4 hover:border-primary flex flex-col items-center border transition-colors"
+		class="group rounded-xl border-default bg-default p-5 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg gap-3 relative flex flex-col items-center border transition-all"
 	>
-		<div class="relative">
+		<span
+			class="left-3 top-3 bg-default/80 backdrop-blur px-2 py-0.5 text-xs font-mono text-muted absolute z-10 rounded-full"
+		>
+			#{{ String(pokemon.id).padStart(4, "0") }}
+		</span>
+
+		<UButton
+			v-if="user && !inCollectionLoading"
+			size="xs"
+			:color="inCollection ? 'success' : 'primary'"
+			:variant="inCollection ? 'soft' : 'solid'"
+			square
+			class="right-3 top-3 absolute z-10 rounded-full transition-transform hover:scale-105"
+			:loading="isAdding || isRemoving"
+			:aria-label="inCollection ? t('collection.card.inCollection') : t('collection.card.add')"
+			@click.stop.prevent="inCollection ? onRemove() : onAdd()"
+		>
+			<UIcon :name="inCollection ? 'i-lucide-check' : 'i-lucide-plus'" class="size-3.5" />
+		</UButton>
+
+		<div class="bg-muted/50 size-28 rounded-2xl p-3 flex items-center justify-center">
 			<img
 				v-if="pokemon.imageUrl"
 				:src="pokemon.imageUrl"
 				:alt="pokemon.name"
 				loading="lazy"
-				class="h-24 w-24 object-contain"
+				class="size-full object-contain transition-transform duration-500 group-hover:scale-110"
 			/>
-			<div v-else class="h-24 w-24 flex items-center justify-center">
-				<UIcon name="i-lucide-image-off" class="text-dimmed h-8 w-8" />
-			</div>
-
-			<UButton
-				v-if="user && !inCollectionLoading"
-				size="xs"
-				:color="inCollection ? 'success' : 'primary'"
-				:variant="inCollection ? 'soft' : 'solid'"
-				square
-				class="right-0 bottom-0 shadow absolute z-10 rounded-full transition-transform hover:scale-105"
-				:loading="isAdding || isRemoving"
-				:aria-label="inCollection ? t('collection.card.inCollection') : t('collection.card.add')"
-				@click.stop.prevent="inCollection ? onRemove() : onAdd()"
-			>
-				<UIcon :name="inCollection ? 'i-lucide-check' : 'i-lucide-plus'" class="size-3.5" />
-			</UButton>
+			<UIcon v-else name="i-lucide-image-off" class="text-dimmed h-8 w-8" />
 		</div>
 
 		<span class="font-medium capitalize">{{ pokemon.name }}</span>
