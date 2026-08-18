@@ -147,14 +147,12 @@
 			}
 		},
 		"collectionInsights": {
+			"badge": "Análisis automático",
 			"actions": {
 				"analyze": "Analizar mi colección",
+				"refresh": "Actualizar análisis",
 				"retry": "Reintentar",
 				"analyzing": "Analizando tu colección..."
-			},
-			"empty": {
-				"title": "Agregá algunos Pokémon primero",
-				"description": "Tu colección está vacía. Agregá algunos Pokémon para obtener análisis y recomendaciones."
 			},
 			"result": {
 				"typeDistributionTitle": "Distribución por tipo",

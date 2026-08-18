@@ -34,7 +34,15 @@ export const CollectionInsightsOutputSchema = z.discriminatedUnion("hasCollectio
 		typeDistribution: z.array(z.object({ type: z.string(), count: z.number() })),
 		strengths: z.array(z.string()),
 		gaps: z.array(z.object({ type: z.string(), reason: z.string() })),
-		recommendations: z.array(z.object({ pokemonName: z.string(), reason: z.string() })),
+		recommendations: z.array(
+			z.object({
+				id: z.number().optional(),
+				pokemonName: z.string(),
+				reason: z.string(),
+				imageUrl: z.string().nullable().optional(),
+				types: z.array(z.string()).optional(),
+			}),
+		),
 	}),
 ]);
 

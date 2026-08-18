@@ -30,14 +30,60 @@ export default defineAppConfig({
 			slots: {
 				base: "placeholder:text-dimmed border-default rounded-xl",
 				root: "w-full",
+				leading: "ps-3.5",
+				trailing: "pe-3.5",
 			},
 			variants: {
 				size: {
-					sm: "h-6 px-3 text-xs",
-					md: "h-8 px-4 text-sm",
-					lg: "h-10 px-5 text-base",
+					sm: {
+						base: "h-6 px-3 text-xs",
+						leading: "ps-3",
+						trailing: "pe-3",
+					},
+					md: {
+						base: "h-8 px-4 text-sm",
+						leading: "ps-3.5",
+						trailing: "pe-3.5",
+					},
+					lg: {
+						base: "h-10 px-5 text-base",
+						leading: "ps-4",
+						trailing: "pe-4",
+					},
 				},
 			},
+			compoundVariants: [
+				{
+					leading: true,
+					size: "sm",
+					class: "ps-8",
+				},
+				{
+					leading: true,
+					size: "md",
+					class: "ps-10",
+				},
+				{
+					leading: true,
+					size: "lg",
+					class: "ps-11",
+				},
+				{
+					trailing: true,
+					size: "sm",
+					class: "pe-8",
+				},
+				{
+					trailing: true,
+					size: "md",
+					class: "pe-10",
+				},
+				{
+					trailing: true,
+					size: "lg",
+					class: "pe-11",
+				},
+			],
 		},
 		textarea: {
 			slots: {

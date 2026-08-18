@@ -1,8 +1,12 @@
 import { eventIteratorToStream, ORPCError } from "@orpc/client";
 import type { UIMessage } from "@repo/ai";
+import { useMutation } from "@tanstack/vue-query";
+import type { ApiRouterOutputs } from "@repo/api/orpc/router";
 
 type TextPart = Extract<UIMessage["parts"][number], { type: "text" }>;
 type ChatStatus = "idle" | "submitted" | "streaming" | "error";
+type AnalysisState = "idle" | "loading" | "done" | "error" | "empty";
+type InsightsResult = Extract<ApiRouterOutputs["ai"]["collectionInsights"], { hasCollection: true }>;
 
 function errorKeyFromORPCError(error: unknown): string {
 	if (error instanceof ORPCError) {
@@ -17,11 +21,64 @@ function errorKeyFromORPCError(error: unknown): string {
 }
 
 export const useCollectionChat = () => {
+	const { t } = useTranslations();
+	const { orpc } = useORPC();
 	const orpcClient = useNuxtApp().$orpcClient;
 
 	const messages = ref<UIMessage[]>([]);
 	const status = ref<ChatStatus>("idle");
 	const errorKey = ref<string | null>(null);
+
+	const insightsMutation = useMutation(orpc.ai.collectionInsights.mutationOptions());
+	const analysisState = ref<AnalysisState>("idle");
+	const analysisResult = ref<InsightsResult | null>(null);
+	const analysisErrorKey = ref<string | null>(null);
+
+	const ensureInitialAnalysis = async (force = false) => {
+		if (!force && analysisState.value !== "idle") return;
+		analysisState.value = "loading";
+		analysisErrorKey.value = null;
+		try {
+			const result = await insightsMutation.mutateAsync({});
+			if (!result.hasCollection) {
+				analysisState.value = "empty";
+				analysisResult.value = null;
+				return;
+			}
+			analysisResult.value = result as InsightsResult;
+			analysisState.value = "done";
+		} catch (error) {
+			analysisState.value = "error";
+			analysisErrorKey.value = errorKeyFromORPCError(error);
+		}
+	};
+
+	function buildAnalysisContextMessage(result: InsightsResult): UIMessage {
+		let text = `${t("ai.collectionInsights.badge")}\n\n`;
+		text += `${result.summary}\n\n`;
+		if (result.typeDistribution.length > 0) {
+			text += `${t("ai.collectionInsights.result.typeDistributionTitle")}:\n`;
+			text += result.typeDistribution.map((td) => `- ${td.type}: ${td.count}`).join("\n") + "\n\n";
+		}
+		if (result.strengths.length > 0) {
+			text += `${t("ai.collectionInsights.result.strengthsTitle")}:\n`;
+			text += result.strengths.map((s) => `- ${s}`).join("\n") + "\n\n";
+		}
+		if (result.gaps.length > 0) {
+			text += `${t("ai.collectionInsights.result.gapsTitle")}:\n`;
+			text += result.gaps.map((g) => `- ${g.type}: ${g.reason}`).join("\n") + "\n\n";
+		}
+		if (result.recommendations.length > 0) {
+			text += `${t("ai.collectionInsights.result.recommendationsTitle")}:\n`;
+			text += result.recommendations.map((r) => `- ${r.pokemonName}: ${r.reason}`).join("\n") + "\n";
+		}
+		
+		return {
+			id: crypto.randomUUID(),
+			role: "assistant",
+			parts: [{ type: "text", text: text.trim() }],
+		} as UIMessage;
+	}
 
 	const sendMessage = async (text: string) => {
 		const userMessage: UIMessage = {
@@ -36,8 +93,12 @@ export const useCollectionChat = () => {
 		errorKey.value = null;
 
 		try {
+			const payloadMessages = analysisResult.value 
+				? [buildAnalysisContextMessage(analysisResult.value), ...updatedMessages]
+				: updatedMessages;
+
 			const eventIterator = await orpcClient.ai.collectionChat(
-				{ messages: updatedMessages },
+				{ messages: payloadMessages },
 				{ signal: undefined },
 			);
 
@@ -123,6 +184,10 @@ export const useCollectionChat = () => {
 	};
 
 	return {
+		analysisState: computed(() => analysisState.value),
+		analysisResult: computed(() => analysisResult.value),
+		analysisErrorKey: computed(() => analysisErrorKey.value),
+		ensureInitialAnalysis,
 		messages: computed(() => messages.value),
 		status: computed(() => status.value),
 		errorKey: computed(() => errorKey.value),

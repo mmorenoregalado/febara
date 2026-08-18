@@ -15,8 +15,19 @@
 		{ icon: "i-lucide-droplet", key: "searchWater" },
 	] as const;
 
-	const { messages, status, errorKey, isConnecting, isStreaming, sendMessage, retryLast } =
-		useCollectionChat();
+	const { 
+		messages, 
+		status, 
+		errorKey, 
+		isConnecting, 
+		isStreaming, 
+		sendMessage, 
+		retryLast,
+		analysisState,
+		analysisResult,
+		analysisErrorKey,
+		ensureInitialAnalysis
+	} = useCollectionChat();
 
 	const input = ref("");
 	const messagesContainerRef = ref<HTMLDivElement | null>(null);
@@ -48,6 +59,8 @@
 		void sendMessage(text);
 	};
 
+
+
 	watch(
 		[messages, status],
 		() => {
@@ -78,6 +91,7 @@
 				>
 					<UIcon name="i-lucide-sparkles" class="size-8 text-primary" />
 					<p class="text-sm text-highlighted">{{ t("ai.collectionChat.welcome") }}</p>
+
 					<div class="gap-2 flex w-full flex-col">
 						<UButton
 							v-for="suggestion in SUGGESTIONS"

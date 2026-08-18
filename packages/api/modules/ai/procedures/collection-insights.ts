@@ -101,12 +101,36 @@ export const collectionInsights = protectedProcedure
 				insights.gapReasons.find((g) => g.type === type)?.reason ?? DEFAULT_GAP_REASON[locale],
 		}));
 
+		const recsWithDetails = await Promise.allSettled(
+			insights.recommendations.map(async (rec) => {
+				try {
+					const detail = await fetchPokemonByIdOrName(rec.pokemonName).then(toPokemonDetail);
+					return {
+						...rec,
+						id: detail.id,
+						imageUrl: detail.imageUrl,
+						types: detail.types,
+					};
+				} catch {
+					return {
+						...rec,
+						imageUrl: null,
+						types: [],
+					};
+				}
+			}),
+		);
+
+		const finalRecommendations = recsWithDetails
+			.map((r) => (r.status === "fulfilled" ? r.value : undefined))
+			.filter((r): r is NonNullable<typeof r> => r !== undefined);
+
 		return {
 			hasCollection: true as const,
 			summary: insights.summary,
 			typeDistribution,
 			strengths: insights.strengths,
 			gaps: finalGaps,
-			recommendations: insights.recommendations,
+			recommendations: finalRecommendations,
 		};
 	});
